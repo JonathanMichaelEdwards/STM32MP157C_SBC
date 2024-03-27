@@ -1,0 +1,15 @@
+vddcore: buck1      (~1.5A)
+vdd_ddr: buck2      (1A)
+vdd: buck3          (500mA)
+v3v3: buck4         (2A)
+v3v3_env: ldo1    (350mA)
+v3v3_eth0: ldo2     (350mA)
+vtt_ddr: ldo3       (200mA)
+vdd_usb: ldo4       (100mA) - NA
+vdda: ldo5          (350mA) - Analog
+v3v3_cam: ldo6     (200mA)
+
+https://wiki.st.com/stm32mpu/wiki/Regulator_overview
+
+-- gpio control (linux)
+https://wiki.st.com/stm32mpu/wiki/How_to_control_a_GPIO_in_userspace

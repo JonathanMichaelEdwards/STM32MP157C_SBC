@@ -1,0 +1,185 @@
+* Takes ~5 seconds For the Camera to starup
+* If the Camera hangs or faults - kernal needs to be rebooted
+* The object is 65 mm away from the camera - two cycles showing autofocus 10 and 200
+
+* Cycle one use autofocus value of 10
+* Cycle two use autofocus value of 200
+
+# Temperature
+* Takes about 15 min to go from ambiant (20 deg) to reach 40 deg (external)
+
+
+root@stm32mp1:/usr/bin# sh controller_A7.sh 
+#######################################
+# Stating cycle 1
+[  155.167181] usb 1-1: new high-speed USB device number 4 using ehci-platform
+[  159.234335] sh (412): drop_caches: 3
+=== Camera will output a greyscale image ===
+
+///////////////////////////////
+/// Vimba API Load Settings ///
+///////////////////////////////
+
+Could not start Vimba [error code: -16]
+Exiting application, could not load settings. Error code: -16
+>> Could not start Vimba [error code: -16]
+>> No transport layers were found - Need to initialise Vimba drivers...
+>> Exporting GENICAM_GENTL32_PATH
+=== Camera will output a greyscale image ===
+
+///////////////////////////////
+/// Vimba API Load Settings ///
+///////////////////////////////
+
+--> VimbaC has been started
+--> Camera with id 'DEV_1AB22C001978' has been opened
+--> Feature values have been loaded from given XML file
+--> Camera has been closed
+--> VimbaC has been stopped
+
+
+///////////////////////////////////////////////////
+/// Vimba API Capture, Process, and Store Image ///
+///////////////////////////////////////////////////
+
+Vimba Version Major: 1 Minor: 8 Patch: 2
+Camera ID: DEV_1AB22C001978
+
+Pixel format Mono8
+Processing Mono Image
+Image was written successfully...
+==================================================
+>> [0]
+==================================================
+[  165.818218] sh (412): drop_caches: 3
+=== Camera will output a colored image ===
+
+///////////////////////////////
+/// Vimba API Load Settings ///
+///////////////////////////////
+
+Could not start Vimba [error code: -16]
+Exiting application, could not load settings. Error code: -16
+>> Could not start Vimba [error code: -16]
+>> No transport layers were found - Need to initialise Vimba drivers...
+>> Exporting GENICAM_GENTL32_PATH
+=== Camera will output a colored image ===
+
+///////////////////////////////
+/// Vimba API Load Settings ///
+///////////////////////////////
+
+--> VimbaC has been started
+--> Camera with id 'DEV_1AB22C001978' has been opened
+--> Feature values have been loaded from given XML file
+--> Camera has been closed
+--> VimbaC has been stopped
+
+
+///////////////////////////////////////////////////
+/// Vimba API Capture, Process, and Store Image ///
+///////////////////////////////////////////////////
+
+Vimba Version Major: 1 Minor: 8 Patch: 2
+Camera ID: DEV_1AB22C001978
+
+Pixel format BayerRG8
+Processing Color Image
+Image was written successfully...
+==================================================
+>> [0]
+==================================================
+[  173.056859] sh (412): drop_caches: 3
+[  174.158290] usb 1-1: USB disconnect, device number 4
+Starting Image Processing on Image 1...
+Completed Image Processing on Image 1...
+# Finished cycle 1
+#######################################
+>> 0
+#######################################
+# Starting cycle 2
+[  192.867227] usb 1-1: new high-speed USB device number 5 using ehci-platform
+[  200.840105] sh (412): drop_caches: 3
+=== Camera will output a greyscale image ===
+
+///////////////////////////////
+/// Vimba API Load Settings ///
+///////////////////////////////
+
+Could not start Vimba [error code: -16]
+Exiting application, could not load settings. Error code: -16
+>> Could not start Vimba [error code: -16]
+>> No transport layers were found - Need to initialise Vimba drivers...
+>> Exporting GENICAM_GENTL32_PATH
+=== Camera will output a greyscale image ===
+
+///////////////////////////////
+/// Vimba API Load Settings ///
+///////////////////////////////
+
+--> VimbaC has been started
+--> Camera with id 'DEV_1AB22C001978' has been opened
+--> Feature values have been loaded from given XML file
+--> Camera has been closed
+--> VimbaC has been stopped
+
+
+///////////////////////////////////////////////////
+/// Vimba API Capture, Process, and Store Image ///
+///////////////////////////////////////////////////
+
+Vimba Version Major: 1 Minor: 8 Patch: 2
+Camera ID: DEV_1AB22C001978
+
+Pixel format Mono8
+Processing Mono Image
+Image was written successfully...
+==================================================
+>> [0]
+==================================================
+[  206.793485] sh (412): drop_caches: 3
+=== Camera will output a colored image ===
+
+///////////////////////////////
+/// Vimba API Load Settings ///
+///////////////////////////////
+
+Could not start Vimba [error code: -16]
+Exiting application, could not load settings. Error code: -16
+>> Could not start Vimba [error code: -16]
+>> No transport layers were found - Need to initialise Vimba drivers...
+>> Exporting GENICAM_GENTL32_PATH
+=== Camera will output a colored image ===
+
+///////////////////////////////
+/// Vimba API Load Settings ///
+///////////////////////////////
+
+--> VimbaC has been started
+--> Camera with id 'DEV_1AB22C001978' has been opened
+--> Feature values have been loaded from given XML file
+--> Camera has been closed
+--> VimbaC has been stopped
+
+
+///////////////////////////////////////////////////
+/// Vimba API Capture, Process, and Store Image ///
+///////////////////////////////////////////////////
+
+Vimba Version Major: 1 Minor: 8 Patch: 2
+Camera ID: DEV_1AB22C001978
+
+Pixel format BayerRG8
+Processing Color Image
+Image was written successfully...
+==================================================
+>> [0]
+==================================================
+[  215.171041] sh (412): drop_caches: 3
+[  215.210580] usb 1-1: USB disconnect, device number 5
+Starting Image Processing on Image 2...
+Completed Image Processing on Image 2...
+# Finished cycle 2
+#######################################
+>> 0
+

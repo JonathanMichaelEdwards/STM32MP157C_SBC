@@ -1,0 +1,37 @@
+diff --git b/stm32mp15-u-boot.dtsi.orig a/stm32mp15-u-boot.dtsi
+index 038ae25..2056db5 100644
+--- b/arch/arm/dts/stm32mp15-u-boot.dtsi
++++ a/arch/arm/dts/stm32mp15-u-boot.dtsi
+@@ -129,7 +129,7 @@
+ 	u-boot,dm-pre-reloc;
+ };
+ 
+-#ifdef CONFIG_TFABOOT
++#ifdef CONFIG_STM32MP1_TRUSTED
+ &scmi0 {
+ 	u-boot,dm-pre-reloc;
+ };
+@@ -161,7 +161,7 @@
+ &scmi_sram {
+ 	u-boot,dm-pre-reloc;
+ };
+-#endif
++#endif  /* CONFIG_STM32MP1_TRUSTED */
+ 
+ &sdmmc1 {
+ 	compatible = "st,stm32-sdmmc2", "arm,pl18x", "arm,primecell";
+@@ -208,7 +208,7 @@
+ };
+ 
+ /* NO MORE USE SCMI SUPPORT for BASIC boot chain */
+-#ifndef CONFIG_TFABOOT
++//#ifndef CONFIG_STM32MP1_TRUSTED
+ 
+ #include "stm32mp15-no-scmi.dtsi"
+ 
+@@ -266,4 +266,4 @@
+ 	resets = <&rcc USART1_R>;
+ };
+ 
+-#endif /* CONFIG_TFABOOT */
++//#endif /* CONFIG_STM32MP1_TRUSTED */

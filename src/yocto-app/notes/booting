@@ -1,0 +1,356 @@
+>>>> grep -i rtc /var/log/messages
+Mar  9 16:17:15 stm32mp1 user.debug kernel: [    2.996891] stm32_rtc 5c004000.rtc: char device (253:0)
+Mar  9 16:17:15 stm32mp1 user.info kernel: [    2.996932] stm32_rtc 5c004000.rtc: registered as rtc0
+Mar  9 16:17:15 stm32mp1 user.info kernel: [    3.000680] stm32_rtc 5c004000.rtc: setting system clock t)
+Mar  9 16:17:15 stm32mp1 user.debug kernel: [    3.009928] rtc rtc0: Alarm occurred   
+Mar  9 16:17:15 stm32mp1 user.debug kernel: [    3.010014] stm32_rtc 5c004000.rtc: No LSCO clock: -22
+Mar  9 16:17:15 stm32mp1 user.info kernel: [    3.010030] stm32_rtc 5c004000.rtc: registered rev:1.2
+Mar  9 16:17:15 stm32mp1 user.err kernel: [    3.016518] stm32_rtc 5c004000.rtc: Alarm can be set only o.
+Mar  9 16:17:15 stm32mp1 user.err kernel: [    3.022213] rtc rtc0: __rtc_set_alarm: err=-22
+
+
+
+
+stm32prog usb 0
+
+
+mkdir /lib/firmware/
+mv /usr/bin/gpio.elf /lib/firmware/
+mv /usr/bin/PWR_STOP_CoPro_CM4.elf /lib/firmware/
+cd /lib/firmware/
+
+echo enabled > /sys/devices/platform/soc/40010000.serial/tty/ttySTM0/power/wakeup
+echo enabled > /sys/devices/platform/soc/40010000.serial/power/wakeup
+gpioset gpiochip3 11=1
+echo 0 > /sys/class/rtc/rtc0/wakealarm; echo +20 > /sys/class/rtc/rtc0/wakealarm; echo mem > /sys/power/state
+
+echo enabled > /sys/devices/platform/soc/40010000.serial/tty/ttySTM0/power/wakeup
+echo enabled > /sys/devices/platform/soc/40010000.serial/power/wakeup
+echo 0 > /sys/class/rtc/rtc0/wakealarm; echo +20 > /sys/class/rtc/rtc0/wakealarm; echo mem > /sys/power/state
+
+echo stop > /sys/class/remoteproc/remoteproc0/state; echo PWR_STOP_CoPro_CM4.elf > /sys/class/remoteproc/remoteproc0/firmware; echo start > /sys/class/remoteproc/remoteproc0/state
+
+echo disabled > /sys/devices/platform/soc/40010000.serial/tty/ttySTM0/power/wakeup
+echo disabled > /sys/devices/platform/soc/40010000.serial/power/wakeup
+
+echo 1 > /sys/class/rtc/rtc0/device/power/wakeup
+echo 0 > /sys/class/rtc/rtc0/wakealarm; echo +10 > /sys/class/rtc/rtc0/wakealarm; echo mem > /sys/power/state
+
+ifconfig eth0 169.254.128.28 broadcast 169.254.255.255 netmask 255.255.0.0
+
+setenv mmcdev '1'
+setenv mmcrootfstype 'ext4 rootwait'
+setenv finduuid 'part uuid ${devtype} ${bootpart} uuid'
+setenv args_mmc 'run finduuid;setenv bootargs console=${console} root=/dev/mmcblk1p4 rw rootfstype=${mmcrootfstype} ${cmdline}'
+setenv args_mmc_old 'setenv bootargs console=${console} ${optargs} root=/dev/mmcblk1p4 rw rootfstype=${mmcrootfstype} ${cmdline}'
+setenv args_mmc_uuid 'setenv bootargs console=${console} ${optargs} root=UUID=${uuid} rw rootfstype=${mmcrootfstype} {cmdline}'
+setenv args_uenv_root 'setenv bootargs console=${console} ${optargs} root=${uenv_root} rw rootfstype=${mmcrootfstype} ${cmdline}'
+setenv args_netinstall 'setenv bootargs ${netinstall_bootargs} ${optargs} root=/dev/ram rw {cmdline}'
+
+setenv bootargs 'fsck=force fsck.repair=yes root=/dev/disk/by-partuuid/mmcblk1p4 rootwait rw console=ttySTM0,115200'
+
+
+setenv fdtfile
+
+
+setenv bootargs 'console=ttySTM0,115200 root=/dev/mmcblk1p2 rootfstype=ext4 rootwait rw consoleblank=0 ip=off'
+setenv bootargs 'root=/dev/ram rootwait rw console=ttySTM0,115200'
+
+
+
+# Fixs for booting to kernal
+491f6117-415d-4f53-88c9-6e0de54deac6
+
+--------------------
+setenv boot_prefixes '/mmc1_' // As 'stm32mp157c-odyssey_extlinux.conf' stored in 'mmc1_extlinux' directory.
+setenv bootargs 'root=PARTUUID=491f6117-415d-4f53-88c9-6e0de54deac6 rootwait rw console=ttySTM0,115200'
+setenv soc 'stm32mp157c'
+setenv board 'odyssey'
+setenv boot_instance '1'
+setenv bootcmd_stm32mp "echo "Boot over mmc1!"; run distro_bootcmd;"
+setenv boot_targets 'mmc1'
+setenv boot_device 'mmc1'
+env delete bootubipart
+env delete bootubivol
+saveenv
+----------------------
+
+setup_boot_mode: boot_ctx=0x2203 => boot_mode=22, instance=1 forced=3
+
+setenv bootargs '${cbootargs} quiet root=PARTUUID=491f6117-415d-4f53-88c9-6e0de54deac6 rw rootwait rootfstype=ext4 console=ttySTM0,115200'
+
+
+setenv fdtfile 'stm32mp157c-odyssey.dtb'
+setenv fdtaddr '0xC4000000'
+setenv console 'ttySTM0,115200'
+
+setenv args_mmc 'run finduuid;setenv bootargs console=${console} ${optargs} root=PARTUUID=491f6117-415d-4f53-88c9-6e0de54deac6 rw rootfstype=${mmcrootfstype}'
+setenv uuid_gpt_disk 491f6117-415d-4f53-88c9-6e0de54deac6
+
+# starts kernal from emmc (mmc1)
+run distro_bootcmd
+
+# flashes program
+STM32_Programmer_CLI -c port=usb1 -w flashlayout_st-image-weston/trusted/FlashLayout_emmc_stm32mp157c-odyssey-trusted.tsv
+
+# patching
+git diff --no-index -R
+
+
+
+>>>>>>>> STM32MP> env print            
+altbootcmd=run bootcmd
+arch=arm
+autoload=no
+baudrate=115200
+board=odyssey
+board_name=seeed,odyssey-stm32mp157c
+boot_a_script=load ${devtype} ${devnum}:${distro_bootpart} ${scriptaddr} ${prefix}${script}; source ${sc}
+boot_device=usb
+boot_efi_binary=if fdt addr ${fdt_addr_r}; then bootefi bootmgr ${fdt_addr_r};else bootefi bootmgr ${fdti
+boot_extlinux=run scan_m4fw;run scan_overlays; sysboot ${devtype} ${devnum}:${distro_bootpart} any ${scr}
+boot_instance=0
+boot_m4fw=rproc init; rproc load 0 ${m4fw_addr} ${filesize}; rproc start 0
+boot_net_usb_start=true
+boot_prefixes=/mmc1_
+boot_script_dhcp=boot.scr.uimg
+boot_scripts=boot.scr.uimg boot.scr
+boot_syslinux_conf=extlinux/extlinux.conf
+boot_targets=mmc1
+bootargs=root=PARTUUID=491f6117-415d-4f53-88c9-6e0de54deac6 rootwait rw console=ttySTM0,115200
+bootcmd=run bootcmd_stm32mp
+bootcmd_mmc0=devnum=0; run mmc_boot
+bootcmd_mmc1=devnum=1; run mmc_boot
+bootcmd_mmc2=devnum=2; run mmc_boot
+bootcmd_pxe=run boot_net_usb_start; dhcp; if pxe get; then pxe boot; fi
+bootcmd_stm32mp=echo "Boot over ${boot_device}${boot_instance}!";if test ${boot_device} = serial || test;
+bootcmd_ubifs0=devnum=0; run ubifs_boot
+bootcount=2
+bootdelay=1
+bootfstype=ext4
+bootubipart=UBI
+bootubivol=boot
+cpu=armv7
+devplist=2
+distro_bootcmd=for target in ${boot_targets}; do run bootcmd_${target}; done
+efi_dtb_prefixes=/ /dtb/ /dtb/current/
+env_check=if env info -p -d -q; then env save; fi
+ethact=ethernet@5800a000
+ethaddr=12:34:56:78:9a:bc
+fdt_addr_r=0xc4000000
+fdtcontroladdr=dbdea380
+fileaddr=c4100000
+filesize=e37
+kernel_addr_r=0xc2000000
+load_efi_dtb=load ${devtype} ${devnum}:${distro_bootpart} ${fdt_addr_r} ${prefix}${efi_fdtfile}
+loadaddr=0xc2000000
+m4fw_addr=0xc2000000
+m4fw_name=rproc-m4-fw.elf
+mmc_boot=if mmc dev ${devnum}; then devtype=mmc; run scan_dev_for_boot_part; fi
+pxefile_addr_r=0xc4200000
+ramdisk_addr_r=0xc4400000
+scan_dev_for_boot=echo Scanning ${devtype} ${devnum}:${distro_bootpart}...; for prefix in ${boot_prefixe;
+scan_dev_for_boot_part=part list ${devtype} ${devnum} -bootable devplist; env exists devplist || setenv t
+scan_dev_for_efi=setenv efi_fdtfile ${fdtfile}; if test -z "${fdtfile}" -a -n "${soc}"; then setenv efi_e
+scan_dev_for_extlinux=if test -e ${devtype} ${devnum}:${distro_bootpart} ${prefix}${boot_syslinux_conf};i
+scan_dev_for_scripts=for script in ${boot_scripts}; do if test -e ${devtype} ${devnum}:${distro_bootparte
+scan_m4fw=if test -e ${devtype} ${devnum}:${distro_bootpart} ${m4fw_name};then echo Found M4 FW $m4fw_na;
+scan_overlays=if test -e ${devtype} ${devnum}:${distro_bootpart} /overlays/overlays.txt; then env set fd;
+scriptaddr=0xc4100000
+serial#=003200473032510E35333736                                    
+serverip=192.168.1.1                                                
+soc=stm32mp157c                                                     
+splashimage=0xc4300000                                              
+stderr=serial,vidconsole                                            
+stdout=serial,vidconsole
+ubifs_boot=env exists bootubipart || env set bootubipart UBI; env exists bootubivol || env set bootubivoi
+usb_boot=usb start; if usb dev ${devnum}; then devtype=usb; run scan_dev_for_boot_part; fi
+vendor=st
+
+Environment size: 5256/16379 bytes
+
+----------------------------
+
+
+
+# SD card env
+STM32MP> env print
+altbootcmd=run bootcmd
+arch=arm
+autoload=no
+baudrate=115200
+board=stm32mp1
+board_id=0x1272
+board_name=stm32mp157c-dk2
+board_rev=0x000c
+boot_a_script=load ${devtype} ${devnum}:${distro_bootpart} ${scriptaddr} ${prefix}${script}; source ${scriptaddr}
+boot_device=mmc
+boot_efi_binary=if fdt addr ${fdt_addr_r}; then bootefi bootmgr ${fdt_addr_r};else bootefi bootmgr ${fdtcontroladdr};fi;load ${devtype} ${devnum}:${distro_bootpart} ${kernei
+boot_extlinux=run scan_m4fw;run scan_overlays; sysboot ${devtype} ${devnum}:${distro_bootpart} any ${scriptaddr} ${prefix}${boot_syslinux_conf}
+boot_instance=0
+boot_m4fw=rproc init; rproc load 0 ${m4fw_addr} ${filesize}; rproc start 0
+boot_net_usb_start=true
+boot_prefixes=/mmc0_
+boot_script_dhcp=boot.scr.uimg
+boot_scripts=boot.scr.uimg boot.scr
+boot_syslinux_conf=extlinux/stm32mp157c-dk2_extlinux.conf
+boot_targets=mmc0
+bootcmd=run bootcmd_stm32mp
+bootcmd_mmc0=devnum=0; run mmc_boot
+bootcmd_mmc1=devnum=1; run mmc_boot
+bootcmd_mmc2=devnum=2; run mmc_boot
+bootcmd_pxe=run boot_net_usb_start; dhcp; if pxe get; then pxe boot; fi
+bootcmd_stm32mp=echo "Boot over ${boot_device}${boot_instance}!";if test ${boot_device} = serial || test ${boot_device} = usb;then stm32prog ${boot_device} ${boot_instance};
+bootcmd_ubifs0=devnum=0; run ubifs_boot
+bootcount=3
+bootdelay=1
+bootfstype=ext4
+cpu=armv7
+devplist=4
+distro_bootcmd=for target in ${boot_targets}; do run bootcmd_${target}; done
+efi_dtb_prefixes=/ /dtb/ /dtb/current/
+env_check=if env info -p -d -q; then env save; fi
+ethaddr=10:e7:7a:e1:80:7b
+fdt_addr_r=0xc4000000
+fdtcontroladdr=ddae2f60
+fdtfile=stm32mp157c-dk2.dtb
+fileaddr=c4100000
+filesize=e37
+kernel_addr_r=0xc2000000
+load_efi_dtb=load ${devtype} ${devnum}:${distro_bootpart} ${fdt_addr_r} ${prefix}${efi_fdtfile}
+loadaddr=0xc2000000
+m4fw_addr=0xc2000000
+m4fw_name=rproc-m4-fw.elf
+mmc_boot=if mmc dev ${devnum}; then devtype=mmc; run scan_dev_for_boot_part; fi
+pxefile_addr_r=0xc4200000
+ramdisk_addr_r=0xc4400000
+scan_dev_for_boot=echo Scanning ${devtype} ${devnum}:${distro_bootpart}...; for prefix in ${boot_prefixes}; do run scan_dev_for_extlinux; run scan_dev_for_scripts; done;run;
+scan_dev_for_boot_part=part list ${devtype} ${devnum} -bootable devplist; env exists devplist || setenv devplist 1; for distro_bootpart in ${devplist}; do if fstype ${devtyt
+scan_dev_for_efi=setenv efi_fdtfile ${fdtfile}; if test -z "${fdtfile}" -a -n "${soc}"; then setenv efi_fdtfile ${soc}-${board}${boardver}.dtb; fi; for prefix in ${efi_dtb_e
+scan_dev_for_extlinux=if test -e ${devtype} ${devnum}:${distro_bootpart} ${prefix}${boot_syslinux_conf}; then echo Found ${prefix}${boot_syslinux_conf}; run boot_extlinux; i
+scan_dev_for_scripts=for script in ${boot_scripts}; do if test -e ${devtype} ${devnum}:${distro_bootpart} ${prefix}${script}; then echo Found U-Boot script ${prefix}${scripe
+scan_m4fw=if test -e ${devtype} ${devnum}:${distro_bootpart} ${m4fw_name};then echo Found M4 FW $m4fw_name; if load ${devtype} ${devnum}:${distro_bootpart} ${m4fw_addr} ${m;
+scan_overlays=if test -e ${devtype} ${devnum}:${distro_bootpart} /overlays/overlays.txt; then env set fdt_addr ${fdt_addr_r}; if load ${devtype} ${devnum}:${distro_bootpart;
+scriptaddr=0xc4100000
+serial#=003A003A3438511836383238
+serverip=192.168.1.1
+soc=stm32mp
+splashimage=0xc4300000
+ubifs_boot=env exists bootubipart || env set bootubipart UBI; env exists bootubivol || env set bootubivol boot; if ubi part ${bootubipart} && ubifsmount ubi${devnum}:${booti
+usb_boot=usb start; if usb dev ${devnum}; then devtype=usb; run scan_dev_for_boot_part; fi
+vendor=st
+
+Environment size: 5117/16379 bytes
+
+-----------------------------
+
+
+# with npi boot + errors
+STM32MP> env print                                                                                                             
+altbootcmd=run bootcmd                                                                                                         
+arch=arm                                                                                                                       
+args_mmc=run finduuid;setenv bootargs console=${console} root=PARTUUID=${uuid} ro rootfstype=${mmcrootfstype} ${cmdline}       
+args_mmc_old=setenv bootargs console=${console} ${optargs} root=${oldroot} ro rootfstype=${mmcrootfstype} ${cmdline}           
+args_mmc_uuid=setenv bootargs console=${console} ${optargs} root=UUID=${uuid} ro rootfstype=${mmcrootfstype} ${cmdline}        
+args_netinstall=setenv bootargs ${netinstall_bootargs} ${optargs} root=/dev/ram rw ${cmdline}                                  
+args_uenv_root=setenv bootargs console=${console} ${optargs} root=${uenv_root} ro rootfstype=${mmcrootfstype} ${cmdline}       
+autoload=no                                                                                                                    
+baudrate=115200                                                                                                                
+board=stm32mp1                                                                                                                 
+board_name=seeed,odyssey-stm32mp157c                                                                                           
+boot=${devtype} dev ${mmcdev}; echo npi-booting ....;if ${devtype} rescan; then setenv bootpart ${mmcdev}:1; if test -e ${devt;
+boot_a_script=load ${devtype} ${devnum}:${distro_bootpart} ${scriptaddr} ${prefix}${script}; source ${scriptaddr}              
+boot_device=usb                                                                                                                
+boot_efi_binary=if fdt addr ${fdt_addr_r}; then bootefi bootmgr ${fdt_addr_r};else bootefi bootmgr ${fdtcontroladdr};fi;load $i
+boot_extlinux=sysboot ${devtype} ${devnum}:${distro_bootpart} any ${scriptaddr} ${prefix}${boot_syslinux_conf}                 
+boot_instance=0                                                                                                                
+boot_net_usb_start=true                                                                                                        
+boot_prefixes=/ /boot/                                                                                                         
+boot_script_dhcp=boot.scr.uimg                                                                                                 
+boot_scripts=boot.scr.uimg boot.scr                                                                                            
+boot_syslinux_conf=extlinux/extlinux.conf                                                                                      
+boot_targets=mmc0 legacy_mmc0 mmc1 legacy_mmc1 ubifs0 mmc2 pxe                                                                 
+bootcmd=run bootcmd_stm32mp                                                                                                    
+bootcmd_legacy_mmc0=setenv devtype mmc; setenv mmcdev 0; setenv bootpart 0:1 ; run boot                                        
+bootcmd_legacy_mmc1=setenv devtype mmc; setenv mmcdev 1; setenv bootpart 1:1 ; run boot                                        
+bootcmd_mmc0=devnum=0; run mmc_boot                                                                                            
+bootcmd_mmc1=devnum=1; run mmc_boot                                                                                            
+bootcmd_mmc2=devnum=2; run mmc_boot                                                                                            
+bootcmd_pxe=run boot_net_usb_start; dhcp; if pxe get; then pxe boot; fi                                                        
+bootcmd_stm32mp=echo "Boot over ${boot_device}${boot_instance}!";run distro_bootcmd                                            
+bootcmd_ubifs0=devnum=0; run ubifs_boot                                                                                        
+bootcount=20                                                                                                                   
+bootdelay=3                                                                                                                    
+bootenv=uEnv.txt                                                                                                               
+bootenvfile=uEnv.txt                                                                                                           
+bootfstype=ext4                                                                                                                
+bootpart=1:1                                                                                                                   
+bootscript=echo Running bootscript from mmc${bootpart} ...; source ${loadaddr}                                                 
+bootubipart=UBI                                                                                                                
+bootubivol=boot                                                                                                                
+capeloadoverlay=if test -e ${devtype} ${rootpart} ${uboot_overlay}; then run loadoverlay;else echo uboot_overlays: unable to f;
+console=ttySTM0,115200                                                                                                         
+cpu=armv7                                                                                                                      
+curpart=1:7                                                                                                                    
+devtype=mmc                                                                                                                    
+distro_bootcmd=for target in ${boot_targets}; do run bootcmd_${target}; done                                                   
+efi_dtb_prefixes=/ /dtb/ /dtb/current/                                                                                         
+env_check=if env info -p -d -q; then env save; fi                                                                              
+envboot=mmc dev ${mmcdev}; if mmc rescan; then echo SD/MMC found on device ${mmcdev};if run loadbootscript; then run bootscrip;
+ethact=ethernet@5800a000                                                                                                       
+ethaddr=12:34:56:78:9a:bc                                                                                                      
+failumsboot=echo; echo FAILSAFE: U-Boot UMS (USB Mass Storage) enabled, media now available over the usb slave port ...; ums 0;
+fdt_addr_r=0xc4000000                                                                                                          
+fdtaddr=0xC4000000                                                                                                             
+fdtcontroladdr=dbdea360                                                                                                        
+fdtfile=undefined                                                                                                              
+finduuid=part uuid ${devtype} ${bootpart} uuid                                                                                 
+importbootenv=echo Importing environment from ${devtype} ...; env import -t ${loadaddr} ${filesize}                            
+kernel_addr_r=0xc2000000                                                                                                       
+load_efi_dtb=load ${devtype} ${devnum}:${distro_bootpart} ${fdt_addr_r} ${prefix}${efi_fdtfile}                                
+loadaddr=0xC2000000                                                                                                            
+loadbootenv=load ${devtype} ${bootpart} ${loadaddr} ${bootenvfile}                                                             
+loadbootscript=load ${devtype} ${bootpart} ${loadaddr} ${scriptfile};                                                          
+loadfdt=echo loading ${fdtdir}/${fdtfile} ...; load ${devtype} ${bootpart} ${fdtaddr} ${fdtdir}/${fdtfile}                     
+loadimage=load ${devtype} ${bootpart} ${loadaddr} ${bootdir}/${bootfile}                                                       
+loadoverlay=echo uboot_overlays: loading ${uboot_overlay} ...; load ${devtype} ${rootpart} ${rdaddr} ${uboot_overlay}; fdt add;
+loadrd=load ${devtype} ${bootpart} ${rdaddr} ${bootdir}/${rdfile}; setenv rdsize ${filesize}                                   
+mmc_boot=if mmc dev ${devnum}; then devtype=mmc; run scan_dev_for_boot_part; fi                                                
+mmcboot=mmc dev ${mmcdev}; setenv devnum ${mmcdev}; setenv devtype mmc; if mmc rescan; then echo SD/MMC found on device ${mmcd;
+mmcdev=1                                                                                                                       
+mmcloados=run args_mmc; if test ${boot_fdt} = yes || test ${boot_fdt} = try; then if run loadfdt; then if test -n ${uname_r}; ;
+mmcpart=7                                                                                                                      
+mmcrootfstype=ext4 rootwait                                                                                                    
+pxefile_addr_r=0xc4200000                                                                                                      
+ramdisk_addr_r=0xc4400000                                                                                                      
+rdaddr=0xC4400000                                      col                                                                        
+rootpart=1:4                                                                                                                   
+scan_dev_for_boot=echo Scanning ${devtype} ${devnum}:${distro_bootpart}...; for prefix in ${boot_prefixes}; do run scan_dev_fo;
+scan_dev_for_boot_part=part list ${devtype} ${devnum} -bootable devplist; env exists devplist || setenv devplist 1; for distrot
+scan_dev_for_efi=setenv efi_fdtfile ${fdtfile}; if test -z "${fdtfile}" -a -n "${soc}"; then setenv efi_fdtfile ${soc}-${boarde
+scan_dev_for_extlinux=if test -e ${devtype} ${devnum}:${distro_bootpart} ${prefix}${boot_syslinux_conf}; then echo Found ${prei
+scan_dev_for_scripts=for script in ${boot_scripts}; do if test -e ${devtype} ${devnum}:${distro_bootpart} ${prefix}${script}; e
+script=boot.scr                                                                                                                
+scriptaddr=0xc4100000                                                                                                          
+scriptfile=${script}                                                                                                           
+serial#=003200473032510E35333736                                                                                               
+serverip=192.168.1.1                                                                                                           
+soc=stm32mp                                                                                                                    
+splashimage=0xc4300000                                                                                                         
+ubifs_boot=env exists bootubipart || env set bootubipart UBI; env exists bootubivol || env set bootubivol boot; if ubi part ${i
+uname_boot=echo npi-uname-booting ....bootpart=${bootpart};setenv bootdir /boot; setenv bootfile vmlinuz-${uname_r}; setenv bo;
+usb_boot=usb start; if usb dev ${devnum}; then devtype=usb; run scan_dev_for_boot_part; fi                                     
+vendor=st                                                                                                                      
+virtualloadoverlay=if test -e ${devtype} ${rootpart} ${uboot_overlay}; then run loadoverlay;else echo uboot_overlays: unable t;
+
+---------
+
+
+
+
+
+
+
+
+
+

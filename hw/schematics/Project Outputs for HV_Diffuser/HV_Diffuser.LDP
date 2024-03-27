@@ -1,0 +1,3 @@
+Layer Pairs Export File for PCB: C:\Users\jonmi\Desktop\Diffuser\hw\schematics\HV_Diffuser.PcbDoc
+LayersSetName=Top_Bot_Thru_Holes|DrillFile=hv_diffuser-roundholes.txt|DrillLayers=gtl,gp1,gp2,gbl
+LayersSetName=Top_Bot_Slot_Holes|DrillFile=hv_diffuser-slotholes.txt|DrillLayers=gtl,gp1,gp2,gbl

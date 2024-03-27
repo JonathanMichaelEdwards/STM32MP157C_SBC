@@ -1,0 +1,109 @@
+# Created by Ultra Librarian Gold 8.3.307 Copyright © 1999-2021
+# Frank Frank, Accelerated Designs
+
+StartFootprints
+
+Footprint (Name "21-0210C_W81A2-1_MXM")
+Pad (Name "A1") (Location -29.52756119, 9.84251976) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 11, 11) (Shape Rounded) (Layer Top)
+EndPad
+Pad (Name "A2") (Location -9.84252167, 9.84251976) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 11, 11) (Shape Rounded) (Layer Top)
+EndPad
+Pad (Name "A3") (Location 9.84251785, 9.84251976) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 11, 11) (Shape Rounded) (Layer Top)
+EndPad
+Pad (Name "A4") (Location 29.52755737, 9.84251976) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 11, 11) (Shape Rounded) (Layer Top)
+EndPad
+Pad (Name "B1") (Location -29.52756119, -9.84251976) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 11, 11) (Shape Rounded) (Layer Top)
+EndPad
+Pad (Name "B2") (Location -9.84252167, -9.84251976) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 11, 11) (Shape Rounded) (Layer Top)
+EndPad
+Pad (Name "B3") (Location 9.84251785, -9.84251976) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 11, 11) (Shape Rounded) (Layer Top)
+EndPad
+Pad (Name "B4") (Location 29.52755737, -9.84251976) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 11, 11) (Shape Rounded) (Layer Top)
+EndPad
+Line (Width 6) (Start 36.7095408, -27) (End 47, -27) (Layer TopOverlay) 
+Line (Width 6) (Start -47, -27) (End -36.70954462, -27) (Layer TopOverlay) 
+Line (Width 6) (Start 47, -27) (End 47, -16.22011828) (Layer TopOverlay) 
+Line (Width 6) (Start 47, 27) (End 36.7095408, 27) (Layer TopOverlay) 
+Line (Width 6) (Start -47, 27) (End -47, 16.22012873) (Layer TopOverlay) 
+Line (Width 6) (Start -36.70954462, 27) (End -47, 27) (Layer TopOverlay) 
+Line (Width 6) (Start -47, -16.22012873) (End -47, -27) (Layer TopOverlay) 
+Line (Width 6) (Start 47, 16.22011828) (End 47, 27) (Layer TopOverlay) 
+Text (Location -92.00000191, -15.15748024) (Height 50) (Width 3) (Rotation 0) (Layer TopOverlay) (Value "A")
+Text (Location -92.00000191, -34.84251976) (Height 50) (Width 3) (Rotation 0) (Layer TopOverlay) (Value "B")
+Text (Location -4.52756119, 47) (Height 50) (Width 3) (Rotation 90) (Layer TopOverlay) (Value "1")
+Text (Location 54.52755737, 47) (Height 50) (Width 3) (Rotation 90) (Layer TopOverlay) (Value "4")
+Line (Width 1) (Start -32.15747833, 22) (End -42, 12.15748024) (Layer Mechanical13) 
+Line (Width 1) (Start -42, -22) (End 42, -22) (Layer Mechanical13) 
+Line (Width 1) (Start 42, -22) (End 42, 22) (Layer Mechanical13) 
+Line (Width 1) (Start 42, 22) (End -42, 22) (Layer Mechanical13) 
+Line (Width 1) (Start -42, 22) (End -42, -22) (Layer Mechanical13) 
+Text (Location -92.00000191, -15.15748024) (Height 50) (Width 3) (Rotation 0) (Layer Mechanical13) (Value "A")
+Text (Location -92.00000191, -34.84251976) (Height 50) (Width 3) (Rotation 0) (Layer Mechanical13) (Value "B")
+Text (Location -4.52756119, 47) (Height 50) (Width 3) (Rotation 90) (Layer Mechanical13) (Value "1")
+Text (Location 54.52755737, 47) (Height 50) (Width 3) (Rotation 90) (Layer Mechanical13) (Value "4")
+Text (Location -67.00000191, -15.15748024) (Mirrored True) (Height 50) (Width 3) (Rotation 0) (Layer BottomOverlay) (Value "A")
+Text (Location -67.00000191, -34.84251976) (Mirrored True) (Height 50) (Width 3) (Rotation 0) (Layer BottomOverlay) (Value "B")
+Text (Location -54.52756119, 47) (Mirrored True) (Height 50) (Width 3) (Rotation -90) (Layer BottomOverlay) (Value "1")
+Text (Location 4.52755737, 47) (Mirrored True) (Height 50) (Width 3) (Rotation -90) (Layer BottomOverlay) (Value "4")
+Line (Width 6) (Start -52, -32) (End -52, 32) (Layer Mechanical15) 
+Line (Width 6) (Start -52, 32) (End 52, 32) (Layer Mechanical15) 
+Line (Width 6) (Start 52, 32) (End 52, -32) (Layer Mechanical15) 
+Line (Width 6) (Start 52, -32) (End -52, -32) (Layer Mechanical15) 
+Polygon (PointCount 4) (Layer Mechanical15) 
+Point (-52, -32)
+Point (-52, 32)
+Point (52, 32)
+Point (52, -32)
+EndPolygon
+Polygon (PointCount 4) (Layer Mechanical5) 
+Point (-57, -37)
+Point (-57, 37)
+Point (57, 37)
+Point (57, -37)
+EndPolygon
+Polygon (PointCount 4) (Layer KeepOutLayer) 
+Point (-56.87007904, 37.18503952)
+Point (56.87007904, 37.18503952)
+Point (56.87007904, -37.18503952)
+Point (-56.87007904, -37.18503952)
+EndPolygon
+Step (Name 21-0210C_W81A2-1_MXM.step)
+EndFootprint
+EndFootprints
+
+StartComponents
+
+Component (Name "MAX14515AEWA+T") (PartCount 1) (DesPrefix "U?")
+Pin (Location 300, 0) (Rotation 180) (PinType Passive) (Length 300) (Width 0) (Designator Visible "A1") (Name Visible "SCL") (PinSwap 0) (PartSwap 0) (PinSeq 1) (Part 1)
+Pin (Location 300, -100) (Rotation 180) (PinType Passive) (Length 300) (Width 0) (Designator Visible "A2") (Name Visible "EN") (PinSwap 0) (PartSwap 0) (PinSeq 2) (Part 1)
+Pin (Location 300, -200) (Rotation 180) (PinType Power) (Length 300) (Width 0) (Designator Visible "A3") (Name Visible "GND") (PinSwap 0) (PartSwap 0) (PinSeq 3) (Part 1)
+Pin (Location 300, -300) (Rotation 180) (PinType Passive) (Length 300) (Width 0) (Designator Visible "A4") (Name Visible "VA") (PinSwap 0) (PartSwap 0) (PinSeq 4) (Part 1)
+Pin (Location 1900, -300) (Rotation 0) (PinType Passive) (Length 300) (Width 0) (Designator Visible "B1") (Name Visible "SDA") (PinSwap 0) (PartSwap 0) (PinSeq 5) (Part 1)
+Pin (Location 1900, -200) (Rotation 0) (PinType Power) (Length 300) (Width 0) (Designator Visible "B2") (Name Visible "VDD") (PinSwap 0) (PartSwap 0) (PinSeq 6) (Part 1)
+Pin (Location 1900, -100) (Rotation 0) (PinType Power) (Length 300) (Width 0) (Designator Visible "B3") (Name Visible "VREF") (PinSwap 0) (PartSwap 0) (PinSeq 7) (Part 1)
+Pin (Location 1900, 0) (Rotation 0) (PinType Passive) (Length 300) (Width 0) (Designator Visible "B4") (Name Visible "VB") (PinSwap 0) (PartSwap 0) (PinSeq 8) (Part 1)
+Rectangle (Width 5) (Start 300, -500) (End 1900, 200) (Part 1)
+Parameter (Name "Copyright") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "Copyright (C) 2023 Ultra Librarian. All rights reserved.") (Part 1)
+Parameter (Name "Mfr_Name") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "Analog Devices Inc") (Part 1)
+Parameter (Name "Manufacturer_Part_Number") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "MAX14515AEWA+T") (Part 1)
+Parameter (Name "Digi-Key_Part_Number_1") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "175-MAX14515AEWA+TTR-ND") (Part 1)
+Parameter (Name "Digi-Key_Part_Number_2") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "2156-MAX14515AEWA+T-ND") (Part 1)
+Parameter (Name "Digi-Key_Part_Number_3") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "MAX14515AEWA+T-ND") (Part 1)
+Parameter (Name "Digi-Key_Part_Number_4") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "MAX14515AEWA+TCT-ND") (Part 1)
+Parameter (Name "Digi-Key_Part_Number_5") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "MAX14515AEWA+TDKR-ND") (Part 1)
+Parameter (Name "Digi-Key_Part_Number_6") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "MAX14515AEWA+TTR-ND") (Part 1)
+Parameter (Name "RefDes") (Location 1100, 400) (Height 82) (Rotation 0) (Justification Center) (Value "RefDes") (Part 1)
+Parameter (Name "Type") (Location 1100, 300) (Height 82) (Rotation 0) (Justification Center) (Value "DEV") (Part 1)
+Description (Value "No Description Available") (Part 1)
+Comment (Value "MAX14515AEWA+T") (Part 1)
+Footprint (Name "21-0210C_W81A2-1_MXM")
+EndComponent
+EndComponents

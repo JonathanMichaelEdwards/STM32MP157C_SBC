@@ -1,0 +1,67 @@
+{
+    "actionButtons": {
+        "defaultColor": "light-grey",
+        "reloadButton": " ",
+        "commands": [
+            {
+                "name": "Clean $(trashcan)",
+                "singleInstance": true,
+                "command": "make clean",
+            }, {
+                "name": "Build $(checklist)",
+                "singleInstance": true,
+                "command": "make",
+            }, {
+                "name": "Program $(arrow-right)",
+                "singleInstance": true,
+                "command": "make program",
+            }, {
+                "name": "Monitor $(vm)",
+                "singleInstance": true,
+                "command": "make monitor_uart",
+            }, 
+            {
+                "name": "Ethernet $(vm)",
+                "singleInstance": true,
+                "command": "make monitor_usb0",
+            }, 
+            {
+                "name": "Send $(server-process)",
+                "singleInstance": true,
+                "command": "make send",
+            }, 
+            {
+                "name": "Receive $(server-process)",
+                "singleInstance": true,
+                "command": "make receive",
+            }
+        ]
+    },
+    "files.associations": {
+        "*.h": "c",
+        "random": "c",
+        "opencv.hpp": "c",
+        "array": "c",
+        "bitset": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "utility": "c",
+        "valarray": "c",
+        "iostream": "cpp",
+        "processimage.hpp": "c",
+        "cstdio": "cpp",
+        "cstring": "cpp",
+        "*.tcc": "c",
+        "system_error": "c",
+        "cerrno": "c",
+        "cstdlib": "c",
+        "chrono": "c",
+        "algorithm": "c",
+        "fstream": "cpp",
+        "atomic": "c",
+        "mutex": "c",
+        "shared_mutex": "c",
+        "condition_variable": "c"
+    }
+}
+

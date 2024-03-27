@@ -1,0 +1,24 @@
+diff --git a/stm32mp15-pinctrl.dtsi.orig b/stm32mp15-pinctrl.dtsi
+index a0b76e238..23a3f7511 100644
+--- a/arch/arm/dts/stm32mp15-pinctrl.dtsi
++++ b/arch/arm/dts/stm32mp15-pinctrl.dtsi
+@@ -315,7 +315,8 @@
+ 			pinmux = <STM32_PINMUX('G', 13, AF11)>, /* ETH1_RMII_TXD0 */
+ 				 <STM32_PINMUX('G', 14, AF11)>, /* ETH1_RMII_TXD1 */
+ 				 <STM32_PINMUX('B', 11, AF11)>, /* ETH1_RMII_TX_EN */
+-				 <STM32_PINMUX('A', 1, AF0)>,   /* ETH1_RMII_REF_CLK */
++				 <STM32_PINMUX('A', 1, AF11)>,   /* ETH1_RMII_REF_CLK */
++                 <STM32_PINMUX('G', 8, AF2)>, /* ETH_RMII_ETHCK */
+ 				 <STM32_PINMUX('A', 2, AF11)>,  /* ETH1_MDIO */
+ 				 <STM32_PINMUX('C', 1, AF11)>;  /* ETH1_MDC */
+ 			bias-disable;
+@@ -339,7 +340,8 @@
+ 				 <STM32_PINMUX('C', 1, ANALOG)>,  /* ETH1_MDC */
+ 				 <STM32_PINMUX('C', 4, ANALOG)>,  /* ETH1_RMII_RXD0 */
+ 				 <STM32_PINMUX('C', 5, ANALOG)>,  /* ETH1_RMII_RXD1 */
+-				 <STM32_PINMUX('A', 1, ANALOG)>,  /* ETH1_RMII_REF_CLK */
++                 <STM32_PINMUX('G', 8, ANALOG)>, /* ETH_RMII_ETHCK */
++				 <STM32_PINMUX('A', 1, ANALOG)>,  /* ETH1_RMII_REF_CLK */
+ 				 <STM32_PINMUX('A', 7, ANALOG)>;  /* ETH1_RMII_CRS_DV */
+ 		};
+ 	};

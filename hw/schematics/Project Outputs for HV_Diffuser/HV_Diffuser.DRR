@@ -1,0 +1,21 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: HV_Diffuser.PcbDoc   2/02/2024  10:58:27 PM
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Side to Bottom Side
+ASCII RoundHoles File : HV_Diffuser-RoundHoles.TXT
+ASCII SlotHoles File : HV_Diffuser-SlotHoles.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      8mil (0.201mm)                                            Round             17        PTH        2.57inch (65.22mm)
+T2      10mil (0.254mm)                                           Round             216       PTH        53.64inch (1362.54mm)
+T3      20mil (0.5mm)                                             Slot              2         PTH        0.60inch (15.30mm)
+T4      22mil (0.551mm)                                           Slot              2         PTH        0.43inch (10.90mm)
+T5      28mil (0.711mm)                                           Round             10        PTH        1.65inch (41.78mm)
+T6      32mil (0.8mm)                                             Round             37        PTH        17.78inch (451.50mm)
+T7      118mil (3mm)                                              Round             6         PTH        16.54inch (420.00mm)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              290
+
+Total Processing Time (hh:mm:ss) : 00:00:00

@@ -1,0 +1,23 @@
+diff --git a/dwmac-stm32.c.orig b/dwmac-stm32.c
+index ffaa434e0..357d1f1cb 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
+@@ -189,11 +189,13 @@ static int stm32mp1_set_mode(struct plat_stmmacenet_data *plat_dat)
+ 		break;
+ 	case PHY_INTERFACE_MODE_RMII:
+ 		val = SYSCFG_PMCR_ETH_SEL_RMII;
+-		if ((clk_rate == ETH_CK_F_25M || clk_rate == ETH_CK_F_50M) &&
+-		    (dwmac->eth_ref_clk_sel_reg || dwmac->ext_phyclk)) {
+-			dwmac->enable_eth_ck = true;
+-			val |= SYSCFG_PMCR_ETH_REF_CLK_SEL;
+-		}
++	    if (clk_rate == ETH_CK_F_25M || clk_rate == ETH_CK_F_50M) {
++		    dwmac->enable_eth_ck = true;
++		    if (clk_rate == ETH_CK_F_50M && 
++			    (dwmac->eth_ref_clk_sel_reg || dwmac->ext_phyclk)) {
++			    val |= SYSCFG_PMCR_ETH_REF_CLK_SEL;
++		    }
++	    }
+ 		pr_debug("SYSCFG init : PHY_INTERFACE_MODE_RMII\n");
+ 		break;
+ 	case PHY_INTERFACE_MODE_RGMII:

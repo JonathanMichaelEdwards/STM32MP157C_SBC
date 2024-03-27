@@ -1,0 +1,72 @@
+diff --git a/realtek.c.orig b/realtek.c
+index b1b1fa508..dcc41c79e 100644
+--- a/drivers/net/phy/realtek.c
++++ b/drivers/net/phy/realtek.c
+@@ -296,16 +296,18 @@ static int rtl8211x_parse_status(struct phy_device *phydev)
+ 
+ 	speed = (mii_reg & MIIM_RTL8211x_PHYSTAT_SPEED);
+ 
+-	switch (speed) {
+-	case MIIM_RTL8211x_PHYSTAT_GBIT:
+-		phydev->speed = SPEED_1000;
+-		break;
+-	case MIIM_RTL8211x_PHYSTAT_100:
+-		phydev->speed = SPEED_100;
+-		break;
+-	default:
+-		phydev->speed = SPEED_10;
+-	}
++//	switch (speed) {
++//	case MIIM_RTL8211x_PHYSTAT_GBIT:
++//		phydev->speed = SPEED_1000;
++//		break;
++//	case MIIM_RTL8211x_PHYSTAT_100:
++//		phydev->speed = SPEED_100;
++//		break;
++//	default:
++//		phydev->speed = SPEED_10;
++//	}
++
++    phydev->speed = SPEED_100;
+ 
+ 	return 0;
+ }
+@@ -341,16 +343,18 @@ static int rtl8211f_parse_status(struct phy_device *phydev)
+ 
+ 	speed = (mii_reg & MIIM_RTL8211F_PHYSTAT_SPEED);
+ 
+-	switch (speed) {
+-	case MIIM_RTL8211F_PHYSTAT_GBIT:
+-		phydev->speed = SPEED_1000;
+-		break;
+-	case MIIM_RTL8211F_PHYSTAT_100:
+-		phydev->speed = SPEED_100;
+-		break;
+-	default:
+-		phydev->speed = SPEED_10;
+-	}
++//	switch (speed) {
++//	case MIIM_RTL8211F_PHYSTAT_GBIT:
++//		phydev->speed = SPEED_1000;
++//		break;
++//	case MIIM_RTL8211F_PHYSTAT_100:
++//		phydev->speed = SPEED_100;
++//		break;
++//	default:
++//		phydev->speed = SPEED_10;
++//	}
++
++    phydev->speed = SPEED_100;
+ 
+ 	return 0;
+ }
+@@ -431,7 +435,8 @@ static struct phy_driver RTL8211F_driver = {
+ 	.name = "RealTek RTL8211F",
+ 	.uid = 0x1cc916,
+ 	.mask = 0xffffff,
+-	.features = PHY_GBIT_FEATURES,
++//	.features = PHY_GBIT_FEATURES,
++	.features = PHY_BASIC_FEATURES,
+ 	.probe = &rtl8211f_probe,
+ 	.config = &rtl8211f_config,
+ 	.startup = &rtl8211f_startup,

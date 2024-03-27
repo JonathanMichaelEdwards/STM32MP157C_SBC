@@ -1,0 +1,28 @@
+diff --git a/core_intr.c.orig b/core_intr.c
+index 55f1d14fc..98895de73 100644
+--- a/drivers/usb/dwc2/core_intr.c
++++ b/drivers/usb/dwc2/core_intr.c
+@@ -537,10 +537,13 @@ skip_power_saving:
+ 			 * Change to L2 (suspend) state before releasing
+ 			 * spinlock
+ 			 */
+-			hsotg->lx_state = DWC2_L2;
++			//hsotg->lx_state = DWC2_L2;
+ 
+ 			/* Call gadget suspend callback */
+-			call_gadget(hsotg, suspend);
++			//call_gadget(hsotg, suspend);
++
++            // disconnect OTG interrupt - https://community.st.com/t5/stm32-mpu-products/usb-ethernet-gadget-stops-working-after-replugging-cable/td-p/122715
++            dwc2_hsotg_disconnect(hsotg); 
+ 		}
+ 	} else {
+ 		if (hsotg->op_state == OTG_STATE_A_PERIPHERAL) {
+@@ -617,6 +620,7 @@ static void dwc2_handle_lpm_intr(struct dwc2_hsotg *hsotg)
+ 
+ 			/* Inform gadget that we are in L1 state */
+ 			call_gadget(hsotg, suspend);
++            //dwc2_hsotg_disconnect(hsotg); 
+ 		}
+ 	}
+ }

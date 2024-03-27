@@ -1,0 +1,14 @@
+diff --git a/phy_device.c.orig b/phy_device.c
+index 5dab6be6f..5af611e4d 100644
+--- a/drivers/net/phy/phy_device.c
++++ b/drivers/net/phy/phy_device.c
+@@ -901,6 +901,9 @@ int phy_device_register(struct phy_device *phydev)
+ 	/* Deassert the reset signal */
+ 	phy_device_reset(phydev, 0);
+ 
++	/* HACK force to autoneg. off, 100Mbit. */
++	phy_write(phydev,0, 0x2000);  
++
+ 	/* Run all of the fixups for this PHY */
+ 	err = phy_scan_fixups(phydev);
+ 	if (err) {

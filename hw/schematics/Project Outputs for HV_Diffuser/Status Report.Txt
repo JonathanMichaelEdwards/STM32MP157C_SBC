@@ -1,0 +1,13 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [HV_Diffuser.PrjPcb]
+   Generated File[HV_Diffuser-RoundHoles.TXT]
+   Generated File[HV_Diffuser-SlotHoles.TXT]
+   Generated File[HV_Diffuser.LDP]
+   Generated File[HV_Diffuser.DRR]
+
+
+Files Generated   : 4
+Documents Printed : 0
+
+Finished Output Generation At 10:58:27 PM On 2/02/2024

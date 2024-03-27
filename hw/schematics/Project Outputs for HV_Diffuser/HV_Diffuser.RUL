@@ -1,0 +1,6 @@
+DRC Rules Export File for PCB: C:\Users\jonmi\Desktop\Diffuser\hw\schematics\HV_Diffuser.PcbDoc
+RuleKind=MinimumAnnularRing|RuleName=MinimumAnnularRing|Scope=Board|Minimum=3.94
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.00
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=5.91
+RuleKind=Clearance|RuleName=Min_Clearance_Circuit_Labs|Scope=Board|Minimum=5.91

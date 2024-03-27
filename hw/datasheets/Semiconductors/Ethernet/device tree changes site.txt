@@ -1,0 +1,1 @@
+https://wiki.st.com/stm32mpu/wiki/Ethernet_device_tree_configuration#RMII_with_50MHz_on_ETH_CLK_-28no_PHY_Crystal-29-2C_internal_REF_CLK_from_RCC_-28Reference_clock_-28standard_RMII_clock_name-29_is_provided_by_a_RCC_SoC_internal_clock-29

@@ -1,0 +1,17 @@
+diff --git b/stm32mp15-no-scmi.dtsi.orig a/stm32mp15-no-scmi.dtsi
+index 94a10b8..51a0ac3 100644
+--- b/arch/arm/dts/stm32mp15-no-scmi.dtsi
++++ a/arch/arm/dts/stm32mp15-no-scmi.dtsi
+@@ -114,9 +114,9 @@
+ 	resets = <&rcc HASH1_R>;
+ };
+ 
+-&i2c4 {
+-	clocks = <&rcc I2C4_K>;
+-	resets = <&rcc I2C4_R>;
++&i2c2 {
++	clocks = <&rcc I2C2_K>;
++	resets = <&rcc I2C2_R>;
+ };
+ 
+ &i2c6 {

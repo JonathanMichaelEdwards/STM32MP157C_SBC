@@ -1,0 +1,13 @@
+diff --git b/cmd_stm32prog.c.orig a/cmd_stm32prog.c
+index a20980a..2ebc77c 100644
+--- b/arch/arm/mach-stm32mp/cmd_stm32prog/cmd_stm32prog.c
++++ a/arch/arm/mach-stm32mp/cmd_stm32prog/cmd_stm32prog.c
+@@ -98,7 +98,7 @@ static int do_stm32prog(struct cmd_tbl *cmdtp, int flag, int argc,
+ 
+ 	ret = stm32prog_init(data, addr, size);
+ 	if (ret)
+-		printf("Invalid or missing layout file.");
++		log_debug("Invalid or missing layout file at 0x%lx.\n", addr);
+ 
+ 	/* prepare DFU for device read/write */
+ 	ret = stm32prog_dfu_init(data);

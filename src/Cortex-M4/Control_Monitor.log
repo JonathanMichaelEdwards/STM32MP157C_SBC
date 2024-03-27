@@ -1,0 +1,304 @@
+root@stm32mp1:/usr/bin# 
+root@stm32mp1:/usr/bin# cd /usr/bin/; sh controller_M4.sh Control_Monitor.elf
+[  503.930036] remoteproc remoteproc0: warning: remote FW shutdown without ack
+[  504.104001] remoteproc remoteproc0: stopped remote processor m4
+[  504.110965] remoteproc remoteproc0: powering up m4
+[  504.116966] remoteproc remoteproc0: Booting fw image Control_Monitor.elf, size 546184
+[  504.124839] remoteproc remoteproc0: header-less resource table
+[  504.130595] remoteproc remoteproc0: no resource table found for this firmware
+[  504.137828] remoteproc remoteproc0: header-less resource table
+[  504.144047] remoteproc remoteproc0: remote processor m4 is now up
+=======================================
+---------------------------
+Five ADC Hall Effect and Two Lighting DIAG Demo:
+
+-- ADC_IN1 raw data: 1884, UV Light Voltage: 0.095 [V]
+-- ADC_IN2 raw data: 5243, White Light Voltage: 0.264 [V]
+-- ADC_HALL1 raw data: 64586, Hall Voltage: 3.252 [V]
+-- ADC_HALL2 raw data: 7182, Hall Voltage: 0.362 [V]
+-- ADC_HALL3 raw data: 10687, Hall Voltage: 0.538 [V]
+-- ADC_HALL4 raw data: 13814, Hall Voltage: 0.696 [V]
+-- ADC_HALL5 raw data: 7600, Hall Voltage: 0.383 [V]
+---------------------------
+Two EEPROM Write and Read Demo:
+
+--- 0x50
+I2C3 EEPROM 0x50 & 0x51 are Connected
+EEPROM Wrote: Hello World!
+EEPROM Read Data: 
+Hello World!
+EEPROM Wrote:  100.31
+EEPROM Read Data: 
+Hello World! 100.31
+--- 0x51
+I2C3 EEPROM 0x50 & 0x51 are Connected
+EEPROM Wrote: Hello World!
+EEPROM Read Data: 
+Hello World!
+EEPROM Wrote:  100.31
+EEPROM Read Data: 
+Hello World! 100.31
+---------------------------
+Dual Lighting Driver GPIO, DAC (ICTRL), and ADC (DIAG) Demo:
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.860 [V], Current: 158.258 [mA], Power: 769.133 [mW]
+Meter 2 -- Voltage: 11.384 [V], Current: 81.131 [mA], Power: 923.614 [mW]
+-- UV Light Voltage: 0.063 [V], UV LEDs load Current: 5.076 [mA]
+-- White Light Voltage: 0.078 [V], White LEDs load Current: 6.204 [mA]
+
+====
+A7 DOWN...
+[  514.161007] PM: suspend entry (deep)
+[  514.221363] Filesystems sync: 0.056 seconds
+[  514.228142] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[  514.236804] OOM killer disabled.
+[  514.239869] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[  514.248449] printk: Suspending console(s) (use no_console_suspend to debug)
+====
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.836 [V], Current: 182.397 [mA], Power: 882.074 [mW]
+Meter 2 -- Voltage: 11.376 [V], Current: 183.457 [mA], Power: 2086.994 [mW]
+-- UV Light Voltage: 0.576 [V], UV LEDs load Current: 46.100 [mA]
+-- White Light Voltage: 0.577 [V], White LEDs load Current: 46.136 [mA]
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.984 [V], Current: 34.442 [mA], Power: 171.658 [mW]
+Meter 2 -- Voltage: 11.292 [V], Current: 274.656 [mA], Power: 3101.455 [mW]
+-- UV Light Voltage: 0.815 [V], UV LEDs load Current: 65.235 [mA]
+-- White Light Voltage: 0.816 [V], White LEDs load Current: 65.291 [mA]
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.988 [V], Current: 34.324 [mA], Power: 171.209 [mW]
+Meter 2 -- Voltage: 11.196 [V], Current: 578.220 [mA], Power: 6473.641 [mW]
+-- UV Light Voltage: 1.534 [V], UV LEDs load Current: 122.719 [mA]
+-- White Light Voltage: 1.530 [V], White LEDs load Current: 122.433 [mA]
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.988 [V], Current: 34.030 [mA], Power: 169.743 [mW]
+Meter 2 -- Voltage: 11.330 [V], Current: 216.251 [mA], Power: 2450.088 [mW]
+-- UV Light Voltage: 0.669 [V], UV LEDs load Current: 53.520 [mA]
+-- White Light Voltage: 0.671 [V], White LEDs load Current: 53.710 [mA]
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.992 [V], Current: 33.971 [mA], Power: 169.584 [mW]
+Meter 2 -- Voltage: 11.422 [V], Current: 112.158 [mA], Power: 1281.070 [mW]
+-- UV Light Voltage: 0.386 [V], UV LEDs load Current: 30.905 [mA]
+-- White Light Voltage: 0.386 [V], White LEDs load Current: 30.905 [mA]
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.988 [V], Current: 33.736 [mA], Power: 168.274 [mW]
+Meter 2 -- Voltage: 11.510 [V], Current: 5.416 [mA], Power: 62.339 [mW]
+-- UV Light Voltage: 0.064 [V], UV LEDs load Current: 5.092 [mA]
+-- White Light Voltage: 0.077 [V], White LEDs load Current: 6.171 [mA]
+
+---------------------------
+Five I2C Hall Effect Sensor Demo:
+
+--- 0x60
+I2C1 0x60 Hall Sensor Connected
+  Customer Access Mode Enabled
+
+x: -202  	  y: 98  	z: -1261  	  angleXY: 154.120  	angleXZ: -99.101  	angleYZ: -85.556
+--- 0x61
+I2C1 0x61 Hall Sensor Not Connected
+--- 0x62
+I2C1 0x62 Hall Sensor Not Connected
+--- 0x63
+I2C1 0x63 Hall Sensor Not Connected
+--- 0x64
+I2C1 0x64 Hall Sensor Not Connected
+---------------------------
++5V and +12V I2C PWR Monitor Demo:
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.992 [V], Current: 33.559 [mA], Power: 167.526 [mW]
+Meter 2 -- Voltage: 11.380 [V], Current: 0.00 [mA], Power: 0.000 [mW]
+---------------------------
+Tripple I2C PHT Demo:
+
+I2C1 PHT Sensor 0x76 & 0x40 is Connected
+Temperature = 16.70 ℃
+Pressure = 1008.96 hPa
+Humidity = 61.12 %RH
+
+I2C3 PHT Sensor 0x76 & 0x40 is Connected
+Temperature = 19.60 ℃
+Pressure = 1007.27 hPa
+Humidity = 54.73 %RH
+
+I2C5 PHT Sensor 0x76 & 0x40 is Connected
+Temperature = 16.79 ℃
+Pressure = 1006.35 hPa
+Humidity = 59.16 %RH
+
+---------------------------
+M4 ISR STOP Demo:
+
+[  514.370755] dwc2 49000000.usb-otg: suspending usb gadget configfs-gadget
+[  514.440337] Disabling non-boot CPUs ...
+[  514.441263] CPU1 killed.
+[  514.442778] Enabling non-boot CPUs ...
+[  514.443828] CPU1 is up
+[  514.458075] dwc2 49000000.usb-otg: resuming usb gadget configfs-gadget
+[  514.646781] OOM killer enabled.
+[  514.649993] Restarting tasks ... done.
+[  514.656299] PM: suspend exit
+[  514.659621] dwc2 49000000.usb-otg: new device is high-speed
+[  514.787796] dwc2 49000000.usb-otg: new device is high-speed
+[  514.860759] dwc2 49000000.usb-otg: new address 41
+^Croot@stm32mp1:/usr/bin# 
+
+root@stm32mp1:/usr/bin# cd /usr/bin/; sh controller_M4.sh Control_Monitor.elf
+[  537.919945] remoteproc remoteproc0: warning: remote FW shutdown without ack
+[  538.093768] remoteproc remoteproc0: stopped remote processor m4
+[  538.100770] remoteproc remoteproc0: powering up m4
+[  538.106782] remoteproc remoteproc0: Booting fw image Control_Monitor.elf, size 546184
+[  538.114646] remoteproc remoteproc0: header-less resource table
+[  538.120402] remoteproc remoteproc0: no resource table found for this firmware
+[  538.127628] remoteproc remoteproc0: header-less resource table
+[  538.133845] remoteproc remoteproc0: remote processor m4 is now up
+=======================================
+---------------------------
+Five ADC Hall Effect and Two Lighting DIAG Demo:
+
+-- ADC_IN1 raw data: 2308, UV Light Voltage: 0.116 [V]
+-- ADC_IN2 raw data: 5284, White Light Voltage: 0.266 [V]
+-- ADC_HALL1 raw data: 64548, Hall Voltage: 3.250 [V]
+-- ADC_HALL2 raw data: 8036, Hall Voltage: 0.405 [V]
+-- ADC_HALL3 raw data: 12165, Hall Voltage: 0.613 [V]
+-- ADC_HALL4 raw data: 16343, Hall Voltage: 0.823 [V]
+-- ADC_HALL5 raw data: 8237, Hall Voltage: 0.415 [V]
+---------------------------
+Two EEPROM Write and Read Demo:
+
+--- 0x50
+I2C3 EEPROM 0x50 & 0x51 are Connected
+EEPROM Wrote: Hello World!
+EEPROM Read Data: 
+Hello World!
+EEPROM Wrote:  100.31
+EEPROM Read Data: 
+Hello World! 100.31
+--- 0x51
+I2C3 EEPROM 0x50 & 0x51 are Connected
+EEPROM Wrote: Hello World!
+EEPROM Read Data: 
+Hello World!
+EEPROM Wrote:  100.31
+EEPROM Read Data: 
+Hello World! 100.31
+---------------------------
+Dual Lighting Driver GPIO, DAC (ICTRL), and ADC (DIAG) Demo:
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.860 [V], Current: 157.493 [mA], Power: 765.414 [mW]
+Meter 2 -- Voltage: 11.439 [V], Current: 80.836 [mA], Power: 924.662 [mW]
+-- UV Light Voltage: 0.063 [V], UV LEDs load Current: 5.076 [mA]
+-- White Light Voltage: 0.077 [V], White LEDs load Current: 6.183 [mA]
+
+====
+A7 DOWN...
+[  548.150709] PM: suspend entry (deep)
+[  548.211396] Filesystems sync: 0.057 seconds
+[  548.217523] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[  548.226118] OOM killer disabled.
+[  548.229243] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[  548.237837] printk: Suspending console(s) (use no_console_suspend to debug)
+====
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.836 [V], Current: 182.280 [mA], Power: 881.505 [mW]
+Meter 2 -- Voltage: 11.405 [V], Current: 182.103 [mA], Power: 2076.926 [mW]
+-- UV Light Voltage: 0.576 [V], UV LEDs load Current: 46.100 [mA]
+-- White Light Voltage: 0.576 [V], White LEDs load Current: 46.100 [mA]
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.988 [V], Current: 34.324 [mA], Power: 171.209 [mW]
+Meter 2 -- Voltage: 11.334 [V], Current: 271.417 [mA], Power: 3076.253 [mW]
+-- UV Light Voltage: 0.816 [V], UV LEDs load Current: 65.303 [mA]
+-- White Light Voltage: 0.816 [V], White LEDs load Current: 65.247 [mA]
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.988 [V], Current: 34.030 [mA], Power: 169.743 [mW]
+Meter 2 -- Voltage: 11.150 [V], Current: 578.868 [mA], Power: 6454.222 [mW]
+-- UV Light Voltage: 1.534 [V], UV LEDs load Current: 122.735 [mA]
+-- White Light Voltage: 1.533 [V], White LEDs load Current: 122.622 [mA]
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.988 [V], Current: 33.971 [mA], Power: 169.448 [mW]
+Meter 2 -- Voltage: 11.267 [V], Current: 216.545 [mA], Power: 2439.820 [mW]
+-- UV Light Voltage: 0.669 [V], UV LEDs load Current: 53.496 [mA]
+-- White Light Voltage: 0.672 [V], White LEDs load Current: 53.742 [mA]
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.988 [V], Current: 34.148 [mA], Power: 170.330 [mW]
+Meter 2 -- Voltage: 11.321 [V], Current: 112.217 [mA], Power: 1270.465 [mW]
+-- UV Light Voltage: 0.386 [V], UV LEDs load Current: 30.893 [mA]
+-- White Light Voltage: 0.386 [V], White LEDs load Current: 30.849 [mA]
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.992 [V], Current: 33.441 [mA], Power: 166.938 [mW]
+Meter 2 -- Voltage: 11.372 [V], Current: 5.711 [mA], Power: 64.940 [mW]
+-- UV Light Voltage: 0.064 [V], UV LEDs load Current: 5.092 [mA]
+-- White Light Voltage: 0.077 [V], White LEDs load Current: 6.143 [mA]
+
+---------------------------
+Five I2C Hall Effect Sensor Demo:
+
+--- 0x60
+I2C1 0x60 Hall Sensor Connected
+  Customer Access Mode Enabled
+
+x: -575  	  y: 480  	z: 587  	  angleXY: 140.145  	angleXZ: 134.408  	angleYZ: 50.727
+--- 0x61
+I2C1 0x61 Hall Sensor Not Connected
+--- 0x62
+I2C1 0x62 Hall Sensor Not Connected
+--- 0x63
+I2C1 0x63 Hall Sensor Not Connected
+--- 0x64
+I2C1 0x64 Hall Sensor Not Connected
+---------------------------
++5V and +12V I2C PWR Monitor Demo:
+
+I2C2 PWR Monitor 0x40 & 0x41 are Connected
+Meter 1 -- Voltage: 4.992 [V], Current: 33.382 [mA], Power: 166.643 [mW]
+Meter 2 -- Voltage: 11.351 [V], Current: 0.176 [mA], Power: 2.000 [mW]
+---------------------------
+Tripple I2C PHT Demo:
+
+I2C1 PHT Sensor 0x76 & 0x40 is Connected
+Temperature = 16.83 ℃
+Pressure = 1008.92 hPa
+Humidity = 60.67 %RH
+
+I2C3 PHT Sensor 0x76 & 0x40 is Connected
+Temperature = 19.62 ℃
+Pressure = 1007.22 hPa
+Humidity = 54.39 %RH
+
+I2C5 PHT Sensor 0x76 & 0x40 is Connected
+Temperature = 16.85 ℃
+Pressure = 1006.27 hPa
+Humidity = 58.77 %RH
+
+---------------------------
+M4 ISR STOP Demo:
+
+[  548.360727] dwc2 49000000.usb-otg: suspending usb gadget configfs-gadget
+[  548.430350] Disabling non-boot CPUs ...
+[  548.431290] CPU1 killed.
+[  548.432685] Enabling non-boot CPUs ...
+[  548.433754] CPU1 is up
+[  548.447717] dwc2 49000000.usb-otg: resuming usb gadget configfs-gadget
+[  548.636685] OOM killer enabled.
+[  548.639897] Restarting tasks ... done.
+[  548.647735] PM: suspend exit
+[  548.648304] dwc2 49000000.usb-otg: new device is high-speed
+A7 UP...
+root@stm32mp1:/usr/bin# [  548.776432] dwc2 49000000.usb-otg: new device is high-speed
+[  548.849348] dwc2 49000000.usb-otg: new address 42
+
+root@stm32mp1:/usr/bin# 

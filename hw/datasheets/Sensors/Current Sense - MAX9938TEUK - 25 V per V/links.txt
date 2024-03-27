@@ -1,0 +1,4 @@
+TSC2010IDT (20V/V) - https://www.digikey.co.nz/product-detail/en/stmicroelectronics/TSC2010IDT/497-TSC2010IDTCT-ND/13145255
+TSC2011IDT (60V/V) - https://www.digikey.co.nz/product-detail/en/stmicroelectronics/TSC2011IST/497-TSC2011ISTCT-ND/10645231
+INA281B1 (20V/V) - https://www.digikey.co.nz/product-detail/en/texas-instruments/INA281B1IDBVR/296-INA281B1IDBVRCT-ND/13238613
+MAX9938TEUK (25V/V) - https://www.digikey.co.nz/product-detail/en/maxim-integrated/MAX9938TEUK-T/MAX9938TEUK-TCT-ND/2234740

@@ -1,0 +1,19 @@
+{
+    "files.exclude": {
+        "meta-openembedded/.git": true,
+        "meta-python2/.git": true,
+        "meta-st-stm32mp/.git": true,
+        "meta-poky/.git": true,
+        "build-mp1/tmp": true,
+        "build-mp1/cache": true,
+        "build-mp1/downloads": true,
+        "build-mp1/sstate-cache": true,
+        "build-mp1/*.*": true
+    },
+    "terminal.integrated.scrollback": 1000,
+    "files.associations": {
+        "*.h": "c",
+        "*.orig": "c"
+    }
+}
+

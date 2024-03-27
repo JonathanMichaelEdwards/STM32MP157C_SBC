@@ -1,0 +1,16 @@
+R_Tot = R_Set + R_Term                    
+R_Tot < V_OV / (100*i_Set)              
+
+R_Set  = (V_TH * R_Tot) / V_OV 
+R_Term = R_Tot - R_Set    
+i_Set  > V_OV / (100 * R_Tot)
+
+--- Setting values
+V_OV   = 14V     - Overvoltage
+V_TH   = 1.2V    - Threshold Voltage
+i_Set ~= 1uA   - Set Current
+
+
+R_Tot  < 140K
+R_Set  = 12K
+R_Term = 128K - Chose 127K

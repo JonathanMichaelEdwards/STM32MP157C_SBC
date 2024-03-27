@@ -1,0 +1,39 @@
+{
+    "actionButtons": {
+        "defaultColor": "light-grey",
+        "reloadButton": " ",
+        "commands": [
+            {
+                "name": "Clean $(trashcan)",
+                "singleInstance": true,
+                "command": "make clean",
+            }, {
+                "name": "Build $(checklist)",
+                "singleInstance": true,
+                "command": "make clean && make -j 8",
+            }, {
+                "name": "Program $(arrow-right)",
+                "singleInstance": true,
+                "command": "make program",
+            },
+            {
+                "name": "Monitor $(vm)",
+                "singleInstance": true,
+                "command": "make monitor_uart",
+            },
+            {
+                "name": "Ethernet $(vm)",
+                "singleInstance": true,
+                "command": "make monitor_eth0",
+            }
+        ]
+    },
+    "files.associations": {
+        "*.h": "c",
+        "cstdio": "c",
+        "cmath": "c",
+        "*.tcc": "c",
+        "type_traits": "c"
+    }
+}
+

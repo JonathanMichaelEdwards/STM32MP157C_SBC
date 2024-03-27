@@ -1,0 +1,148 @@
+diff --git a/stm32mp157c-odyssey-som.dtsi.orig b/stm32mp157c-odyssey-som.dtsi
+index 6cf49a0a9..2345bfd57 100644
+--- a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
++++ b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
+@@ -12,6 +12,7 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/leds/common.h>
+ #include <dt-bindings/mfd/st,stpmic1.h>
++//#include <dt-bindings/rtc/rtc-stm32.h>
+ 
+ / {
+ 	model = "Seeed Studio Odyssey-STM32MP157C SOM";
+@@ -22,6 +23,14 @@
+ 		reg = <0xc0000000 0x20000000>;
+ 	};
+ 
++	vin: vin {
++		compatible = "regulator-fixed";
++		regulator-name = "vin";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++	};
++
+ 	reserved-memory {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+@@ -98,13 +107,14 @@
+ 	pmic: stpmic@33 {
+ 		compatible = "st,stpmic1";
+ 		reg = <0x33>;
+-		interrupts-extended = <&gpioa 0 IRQ_TYPE_EDGE_FALLING>;
++		interrupts-extended = <&exti_pwr 55 IRQ_TYPE_EDGE_FALLING>;
+ 		interrupt-controller;
+ 		#interrupt-cells = <2>;
+ 
+ 		regulators {
+ 			compatible = "st,stpmic1-regulators";
+ 			ldo1-supply = <&v3v3>;
++			ldo2-supply = <&vin>;
+ 			ldo3-supply = <&vdd_ddr>;
+ 			ldo6-supply = <&v3v3>;
+ 			pwr_sw1-supply = <&bst_out>;
+@@ -144,23 +154,29 @@
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-always-on;
+ 				regulator-over-current-protection;
++				//gpio = <&gpiod 11 0>;
++				//enable-active-high;
+ 				regulator-initial-mode = <0>;
+ 			};
+ 
+-			v1v8_audio: ldo1 {
+-				regulator-name = "v1v8_audio";
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <1800000>;
++			v3v3_env: ldo1 {
++				regulator-name = "v3v3_env";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
+ 				regulator-always-on;
+ 				interrupts = <IT_CURLIM_LDO1 0>;
+ 			};
+ 
+-			v3v3_hdmi: ldo2 {
+-				regulator-name = "v3v3_hdmi";
+-				regulator-min-microvolt = <3300000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-always-on;
+-				interrupts = <IT_CURLIM_LDO2 0>;
++			v3v3_eth0: ldo2 {
++               //compatible = "regulator-gpio";
++               regulator-name = "v3v3_eth0";
++               regulator-min-microvolt = <3300000>;
++               regulator-max-microvolt = <3300000>;
++               regulator-always-on;
++               //regulator-boot-on;
++               //vin-supply = <&vin>;
++               //gpios = <&gpiod 11 GPIO_ACTIVE_HIGH>;
++               //states = <1800000 0x0 3300000 0x1>;
+ 			};
+ 
+ 			vtt_ddr: ldo3 {
+@@ -173,8 +189,8 @@
+ 
+ 			vdd_usb: ldo4 {
+ 				regulator-name = "vdd_usb";
+-				regulator-min-microvolt = <3300000>;
+-				regulator-max-microvolt = <3300000>;
++				//regulator-min-microvolt = <3300000>;
++				//regulator-max-microvolt = <3300000>;
+ 				interrupts = <IT_CURLIM_LDO4 0>;
+ 			};
+ 
+@@ -186,10 +202,10 @@
+ 				regulator-boot-on;
+ 			};
+ 
+-			v1v2_hdmi: ldo6 {
+-				regulator-name = "v1v2_hdmi";
+-				regulator-min-microvolt = <1200000>;
+-				regulator-max-microvolt = <1200000>;
++			v3v3_cam: ldo6 {
++				regulator-name = "v3v3_cam";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
+ 				regulator-always-on;
+ 				interrupts = <IT_CURLIM_LDO6 0>;
+ 			};
+@@ -197,7 +213,7 @@
+ 			vref_ddr: vref_ddr {
+ 				regulator-name = "vref_ddr";
+ 				regulator-always-on;
+-				regulator-over-current-protection;
++				//regulator-over-current-protection;
+ 			};
+ 
+ 			 bst_out: boost {
+@@ -213,7 +229,7 @@
+ 			 vbus_sw: pwr_sw2 {
+ 				regulator-name = "vbus_sw";
+ 				interrupts = <IT_OCP_SWOUT 0>;
+-				regulator-active-discharge;
++				regulator-active-discharge = <1>;
+ 			 };
+ 		};
+ 
+@@ -255,7 +271,10 @@
+ };
+ 
+ &rtc {
+-	status = "okay";
++	st,lsco = <2>;
++	pinctrl-0 = <&rtc_out2_rmp_pins_a>;
++	pinctrl-names = "default";
++    status = "okay";
+ };
+ 
+ &sdmmc2 {
+@@ -269,7 +288,7 @@
+ 	st,neg-edge;
+ 	bus-width = <8>;
+ 	vmmc-supply = <&v3v3>;
+-	vqmmc-supply = <&v3v3>;
++	vqmmc-supply = <&vdd>;
+ 	mmc-ddr-3_3v;
+ 	status = "okay";
+ };

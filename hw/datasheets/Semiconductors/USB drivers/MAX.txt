@@ -1,0 +1,10 @@
+MAX3221EUE+T - line driver
+	- (pro) Autoshutdown
+	- used for longer distances < 15 m
+	- (con) integrated charge pump circuitry, RS232 interface, 
+	  (con) voltage essintially doubles and is very noisy
+	* A simple isolated buffer would be better
+
+MAX22246 - Digital Isolator (Digital isolators are integrated devices used to isolate digital signals and transfer digital communication across an isolation barrier)
+	- (pro) reinforced galvanic isolation for digital signals
+	- AEC-Q100 qualified

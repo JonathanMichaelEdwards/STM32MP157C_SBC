@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "gnu11",
+            "intelliSenseMode": "gcc-arm",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/drivers/BSP/**",
+                "${workspaceFolder}/drivers/CMSIS/**",
+                "${workspaceFolder}/drivers/HAL/**",
+                "${workspaceFolder}/inc/**",
+                "${workspaceFolder}/lib/**",
+                "${workspaceFolder}/inc",
+                "${workspaceFolder}/lib"
+            ],
+            "forcedInclude": [
+                "${workspaceFolder}/drivers/CMSIS/stm32mp157cxx_cm4.h"
+            ]
+        }
+    ],
+    "version": 4
+}

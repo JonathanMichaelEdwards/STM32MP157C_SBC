@@ -1,0 +1,46 @@
+diff --git b/stm32mp157c-odyssey-som-u-boot.dtsi.orig a/stm32mp157c-odyssey-som-u-boot.dtsi
+index 042656a..2304c55 100644
+--- b/arch/arm/dts/stm32mp157c-odyssey-som-u-boot.dtsi
++++ a/arch/arm/dts/stm32mp157c-odyssey-som-u-boot.dtsi
+@@ -34,8 +34,9 @@
+ 	u-boot,dm-pre-reloc;
+ };
+ 
+-#ifndef CONFIG_TFABOOT
++//#ifndef CONFIG_TFABOOT
+ &rcc {
++    u-boot,dm-pre-reloc;
+ 	st,clksrc = <
+ 		CLK_MPU_PLL1P
+ 		CLK_AXI_PLL2P
+@@ -100,6 +101,15 @@
+ 		CLK_LPTIM45_LSE
+ 	>;
+ 
++	/* VCO = 1300.0 MHz => P = 650 (CPU) */
++	pll1: st,pll@0 {
++		compatible = "st,stm32mp1-pll";
++		reg = <0>;
++		cfg = < 2 80 0 0 0 PQR(1,0,0) >;
++		frac = < 0x800 >;
++        u-boot,dm-pre-reloc;
++	};
++
+ 	/* VCO = 1066.0 MHz => P = 266 (AXI), Q = 533 (GPU), R = 533 (DDR) */
+ 	pll2: st,pll@1 {
+ 		compatible = "st,stm32mp1-pll";
+@@ -113,7 +123,7 @@
+ 	pll3: st,pll@2 {
+ 		compatible = "st,stm32mp1-pll";
+ 		reg = <2>;
+-		cfg = < 1 33 1 16 36 PQR(1,1,1) >;
++		cfg = < 1 5 1 20 36 PQR(1,1,1) >;
+ 		frac = < 0x1a04 >;
+ 		u-boot,dm-pre-reloc;
+ 	};
+@@ -126,4 +136,4 @@
+ 		u-boot,dm-pre-reloc;
+ 	};
+ };
+-#endif
++//#endif

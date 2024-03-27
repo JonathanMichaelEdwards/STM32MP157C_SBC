@@ -1,0 +1,150 @@
+# Created by Ultra Librarian Gold 8.3.299 Copyright © 1999-2021
+# Frank Frank, Accelerated Designs
+
+StartFootprints
+
+Footprint (Name "DBV0005A-IPC_A")
+Pad (Name "1") (Location -45.2946, 37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 71.07230377, 24.09970093) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "2") (Location -45.2946, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 71.07230377, 24.09970093) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "3") (Location -45.2946, -37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 71.07230377, 24.09970093) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "4") (Location 45.2946, -37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 71.07230377, 24.09970093) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "5") (Location 45.2946, 37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 71.07230377, 24.09970093) (Shape Rectangular) (Layer Top)
+EndPad
+Line (Width 5.90549994) (Start -31.4961, -57.0866) (End -31.4961, 57.0866) (Layer Mechanical13) 
+Line (Width 5.90549994) (Start -31.4961, -57.0866) (End 31.4961, -57.0866) (Layer Mechanical13) 
+Line (Width 5.90549994) (Start 31.4961, -57.0866) (End 31.4961, 57.0866) (Layer Mechanical13) 
+Line (Width 5.90549994) (Start -31.4961, 57.0866) (End 31.4961, 57.0866) (Layer Mechanical13) 
+Text (Location 1.9679, -16.4726) (Height 50) (Width 3) (Rotation 0) (Layer Mechanical13) (Value ".Designator")
+Line (Width 5.90549994) (Start -55.1181, 66.9291) (End 55.1181, 66.9291) (Layer TopOverlay) 
+Line (Width 5.90549994) (Start -55.1181, -66.9291) (End 55.1181, -66.9291) (Layer TopOverlay) 
+Arc (Width 9.84249973) (Radius 4.92129993) (Location -114.2953, 38.3858) (StartAngle 0) (EndAngle 360) (Layer TopOverlay) 
+Text (Location -117, 92) (Height 50) (Width 3) (Rotation 0) (Layer TopOverlay) (Value "Designator9")
+Step (Name DBV0005A-IPC_A.stp)
+EndFootprint
+
+Footprint (Name "DBV0005A-IPC_B")
+Pad (Name "1") (Location -43.3261, 37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 59.26129913, 22.52490044) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "2") (Location -43.3261, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 59.26129913, 22.52490044) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "3") (Location -43.3261, -37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 59.26129913, 22.52490044) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "4") (Location 43.3261, -37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 59.26129913, 22.52490044) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "5") (Location 43.3261, 37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 59.26129913, 22.52490044) (Shape Rectangular) (Layer Top)
+EndPad
+Line (Width 5.90549994) (Start -31.4961, -57.0866) (End -31.4961, 57.0866) (Layer Mechanical13) 
+Line (Width 5.90549994) (Start -31.4961, -57.0866) (End 31.4961, -57.0866) (Layer Mechanical13) 
+Line (Width 5.90549994) (Start 31.4961, -57.0866) (End 31.4961, 57.0866) (Layer Mechanical13) 
+Line (Width 5.90549994) (Start -31.4961, 57.0866) (End 31.4961, 57.0866) (Layer Mechanical13) 
+Text (Location 1.9679, -16.4726) (Height 50) (Width 3) (Rotation 0) (Layer Mechanical13) (Value ".Designator")
+Line (Width 5.90549994) (Start -55.1181, 66.9291) (End 55.1181, 66.9291) (Layer TopOverlay) 
+Line (Width 5.90549994) (Start -55.1181, -66.9291) (End 55.1181, -66.9291) (Layer TopOverlay) 
+Arc (Width 9.84249973) (Radius 4.92129993) (Location -99.5315, 38.3858) (StartAngle 0) (EndAngle 360) (Layer TopOverlay) 
+Text (Location -102, 85) (Height 50) (Width 3) (Rotation 0) (Layer TopOverlay) (Value "Designator9")
+Step (Name DBV0005A-IPC_B.stp)
+EndFootprint
+
+Footprint (Name "DBV0005A-IPC_C")
+Pad (Name "1") (Location -41.3576, 37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 47.45019913, 20.95009995) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "2") (Location -41.3576, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 47.45019913, 20.95009995) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "3") (Location -41.3576, -37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 47.45019913, 20.95009995) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "4") (Location 41.3576, -37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 47.45019913, 20.95009995) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "5") (Location 41.3576, 37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 47.45019913, 20.95009995) (Shape Rectangular) (Layer Top)
+EndPad
+Line (Width 5.90549994) (Start -31.4961, -57.0866) (End -31.4961, 57.0866) (Layer Mechanical13) 
+Line (Width 5.90549994) (Start -31.4961, -57.0866) (End 31.4961, -57.0866) (Layer Mechanical13) 
+Line (Width 5.90549994) (Start 31.4961, -57.0866) (End 31.4961, 57.0866) (Layer Mechanical13) 
+Line (Width 5.90549994) (Start -31.4961, 57.0866) (End 31.4961, 57.0866) (Layer Mechanical13) 
+Text (Location 1.9679, -16.4726) (Height 50) (Width 3) (Rotation 0) (Layer Mechanical13) (Value ".Designator")
+Line (Width 5.90549994) (Start 2.0526, -57.0866) (End 2.0526, 57.0866) (Layer TopOverlay) 
+Line (Width 5.90549994) (Start -2.0526, -57.0866) (End 2.0526, -57.0866) (Layer TopOverlay) 
+Line (Width 5.90549994) (Start -2.0526, -57.0866) (End -2.0526, 57.0866) (Layer TopOverlay) 
+Line (Width 5.90549994) (Start -2.0526, 57.0866) (End 2.0526, 57.0866) (Layer TopOverlay) 
+Arc (Width 9.84249973) (Radius 4.92129993) (Location -91.6575, 38.3858) (StartAngle 0) (EndAngle 360) (Layer TopOverlay) 
+Text (Location -94, 76) (Height 50) (Width 3) (Rotation 0) (Layer TopOverlay) (Value "Designator9")
+Step (Name DBV0005A-IPC_C.stp)
+EndFootprint
+
+Footprint (Name "DBV0005A-MFG")
+Pad (Name "1") (Location -51.1811, 37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 43.30709839, 23.62199974) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "2") (Location -51.1811, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 43.30709839, 23.62199974) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "3") (Location -51.1811, -37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 43.30709839, 23.62199974) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "4") (Location 51.1811, -37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 43.30709839, 23.62199974) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "5") (Location 51.1811, 37.4016) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 43.30709839, 23.62199974) (Shape Rectangular) (Layer Top)
+EndPad
+Line (Width 5.90549994) (Start -34.4488, -60.0394) (End -34.4488, 60.0394) (Layer Mechanical13) 
+Line (Width 5.90549994) (Start -34.4488, -60.0394) (End 34.4488, -60.0394) (Layer Mechanical13) 
+Line (Width 5.90549994) (Start 34.4488, -60.0394) (End 34.4488, 60.0394) (Layer Mechanical13) 
+Line (Width 5.90549994) (Start -34.4488, 60.0394) (End 34.4488, 60.0394) (Layer Mechanical13) 
+Text (Location 1.9679, -16.4726) (Height 50) (Width 3) (Rotation 0) (Layer Mechanical13) (Value ".Designator")
+Line (Width 5.90549994) (Start -14.7638, -60.0394) (End 14.7638, -60.0394) (Layer TopOverlay) 
+Line (Width 5.90549994) (Start 34.4488, -10.8268) (End 34.4488, 10.8268) (Layer TopOverlay) 
+Line (Width 5.90549994) (Start -14.7638, 60.0394) (End 14.7638, 60.0394) (Layer TopOverlay) 
+Arc (Width 9.84249973) (Radius 4.92129993) (Location -96.4567, 37.4016) (StartAngle 0) (EndAngle 360) (Layer TopOverlay) 
+Text (Location -99, 85) (Height 50) (Width 3) (Rotation 0) (Layer TopOverlay) (Value "Designator9")
+Step (Name DBV0005A-MFG.stp)
+EndFootprint
+EndFootprints
+
+StartComponents
+
+Component (Name "INA281A1IDBVT") (PartCount 1) (DesPrefix "U?")
+Pin (Location 600, -100) (Rotation 0) (PinType Passive) (Length 200) (Width 0) (Designator Visible "1") (Name Hidden "OUT") (PinSwap 0) (PartSwap 0) (PinSeq 1) (Part 1)
+Pin (Location 400, -200) (Rotation 270) (PinType Power) (Length 200) (Width 0) (Designator Visible "2") (Name Hidden "GND") (PinSwap 0) (PartSwap 0) (PinSeq 2) (Part 1)
+Pin (Location 200, 0) (Rotation 180) (PinType HiZ) (Length 200) (Width 0) (Designator Visible "3") (Name Hidden "IN+") (PinSwap 0) (PartSwap 0) (PinSeq 3) (Part 1)
+Pin (Location 200, -200) (Rotation 180) (PinType HiZ) (Length 200) (Width 0) (Designator Visible "4") (Name Hidden "IN-") (PinSwap 0) (PartSwap 0) (PinSeq 4) (Part 1)
+Pin (Location 400, 0) (Rotation 90) (PinType Power) (Length 200) (Width 0) (Designator Visible "5") (Name Hidden "VS") (PinSwap 0) (PartSwap 0) (PinSeq 5) (Part 1)
+Line (Width 8) (Start 200, 100) (End 600, -100) (Part 1)
+Line (Width 8) (Start 200, -300) (End 600, -100) (Part 1)
+Line (Width 8) (Start 200, -300) (End 200, 100) (Part 1)
+Line (Width 8) (Start 200, 0) (End 170, 0) (Part 1)
+Line (Width 8) (Start 200, -200) (End 170, -200) (Part 1)
+Line (Width 8) (Start 600, -100) (End 630, -100) (Part 1)
+Line (Width 8) (Start 400, 0) (End 400, 30) (Part 1)
+Line (Width 8) (Start 400, -200) (End 400, -230) (Part 1)
+Text (Location 230, 50) (Height 82) (Rotation 0) (Justification TopLeft) (Value "+") (Part 1)
+Text (Location 220, 30) (Height 82) (Rotation 0) (Justification TopLeft) (Value "null") (Part 1)
+Text (Location 240, -140) (Height 82) (Rotation 0) (Justification TopLeft) (Value "-") (Part 1)
+Parameter (Name "Manufacturer") (Location 0, 0) (Height 82) (Rotation 0) (Justification BottomLeft) (Value "Texas Instruments") (Part 1)
+Parameter (Name "PartNumber") (Location 0, 0) (Height 82) (Rotation 0) (Justification BottomLeft) (Value "INA281A1IDBVR") (Part 1)
+Parameter (Name "RefDes") (Location 0, 100) (Height 82) (Rotation 0) (Justification Center) (Value "RefDes") (Part 1)
+Parameter (Name "Type") (Location 0, 0) (Height 82) (Rotation 0) (Justification Center) (Value "DEV") (Part 1)
+Parameter (Name "Value") (Location 0, 0) (Height 82) (Rotation 0) (Justification Center) (Value "Value") (Part 1)
+Parameter (Name "Copyright") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "Copyright (C) 2021 Accelerated Designs. All rights reserved") (Part 1)
+Description (Value "No Description Available") (Part 1)
+Footprint (Name "DBV0005A-IPC_A")
+EndComponent
+EndComponents

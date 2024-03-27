@@ -1,0 +1,13 @@
+diff --git b/stm32mp1.c.orig a/stm32mp1.c
+index 48591b2..1ed8217 100644
+--- b/board/st/stm32mp1/stm32mp1.c
++++ a/board/st/stm32mp1/stm32mp1.c
+@@ -710,7 +710,7 @@ int board_late_init(void)
+ 	}
+ 
+ 	/* for DK1/DK2 boards */
+-	board_check_usb_power();
++	//board_check_usb_power();  -- Comment out to disable
+ 
+ 	return 0;
+ }

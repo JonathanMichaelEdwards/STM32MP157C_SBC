@@ -1,0 +1,3 @@
+MPU with Arm Dual Cortex-A7 650 MHz, Arm Cortex-M4 real-time coprocessor, 3D GPU, TFT/MIPI DSI displays, FD-CAN, Secure boot and Cryptography
+
+https://www.st.com/en/microcontrollers-microprocessors/stm32mp157c.html#documentation 

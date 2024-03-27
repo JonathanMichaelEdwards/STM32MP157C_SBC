@@ -1,0 +1,2 @@
+6 pin - 100 mil = 2.54mm
+10 pin - 50 mil = 1.27mm

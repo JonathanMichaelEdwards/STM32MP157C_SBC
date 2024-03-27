@@ -1,0 +1,26 @@
+Circuit: * C:\Users\jonmi\Desktop\Diffuser\hw\simulations\SineVoltageAmplifier.asc
+
+u1:r_u2_u3_r1: both pins shorted together -- ignoring.
+u1:r_u2_u3_r4: both pins shorted together -- ignoring.
+u1:r_u3_u3_r1: both pins shorted together -- ignoring.
+u1:r_u3_u3_r4: both pins shorted together -- ignoring.
+Per .tran options, skipping operating point for transient analysis.
+
+Date: Sun Feb 25 02:29:54 2024
+Total elapsed time: 6.051 seconds.
+
+tnom = 27
+temp = 27
+method = trap
+totiter = 23055
+traniter = 23055
+tranpoints = 8036
+accept = 5601
+rejected = 2435
+matrix size = 832
+fillins = 1752
+solver = Normal
+Thread vector: 84.5/43.7[12] 78.0/21.5[12] 38.6/22.4[10] 6.0/14.3[1]  2592/500
+Matrix Compiler1: 199.80 KB object code size  152.9/71.8/[13.8]
+Matrix Compiler2: 109.24 KB object code size  46.6/40.3/[7.5]
+

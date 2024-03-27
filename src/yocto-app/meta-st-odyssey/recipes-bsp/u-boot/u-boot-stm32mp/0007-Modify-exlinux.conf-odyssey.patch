@@ -1,0 +1,31 @@
+diff --git b/extlinux.conf.orig a/extlinux.conf
+index 2b46328..49efc9c 100644
+--- b/board/st/stm32mp1/extlinux.conf
++++ a/board/st/stm32mp1/extlinux.conf
+@@ -1,20 +1,9 @@
+-# Generic Distro Configuration for STM32MP157
++# Generic Odyssey Configuration for STM32MP157c
+ menu title Select the boot mode
+ TIMEOUT 20
+-DEFAULT stm32mp157c-ev1
++DEFAULT OpenSTLinux
+ 
+-LABEL stm32mp157c-ev1
+-	KERNEL /fit_kernel_dtb.itb#ev1
+-	APPEND root=/dev/mmcblk0p6 rootwait rw earlyprintk console=ttyS3,115200
+-
+-LABEL stm32mp157c-ev1-m4
+-	KERNEL /fit_copro_kernel_dtb.itb#ev1-m4
+-	APPEND root=/dev/mmcblk0p6 rootwait rw earlyprintk console=ttyS3,115200
+-
+-LABEL stm32mp157c-dk2
+-	KERNEL /fit_kernel_dtb.itb#dk2
+-	APPEND root=/dev/mmcblk0p6 rootwait rw earlyprintk console=ttyS3,115200
+-
+-LABEL stm32mp157c-dk2-m4
+-	KERNEL /fit_copro_kernel_dtb.itb#dk2-m4
+-	APPEND root=/dev/mmcblk0p6 rootwait rw earlyprintk console=ttyS3,115200
++LABEL OpenSTLinux
++	KERNEL /uImage
++    FDTDIR /
++	APPEND root=PARTUUID=491f6117-415d-4f53-88c9-6e0de54deac6 rootwait rw rootfstype=ext4 console=ttySTM0,115200

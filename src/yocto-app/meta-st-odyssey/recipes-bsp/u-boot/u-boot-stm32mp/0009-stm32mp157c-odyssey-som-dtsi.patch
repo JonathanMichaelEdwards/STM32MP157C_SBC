@@ -1,0 +1,347 @@
+diff --git a/stm32mp157c-odyssey-som.dtsi.orig b/stm32mp157c-odyssey-som.dtsi
+index 83ff2e7ce..4cdf1170f 100644
+--- a/arch/arm/dts/stm32mp157c-odyssey-som.dtsi
++++ b/arch/arm/dts/stm32mp157c-odyssey-som.dtsi
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+ /*
+- * Copyright (C) 2020 Marcin Sloniewski <marcin.sloniewski@gmail.com>
++ * Copyright (C) 2020 Marcin Sloniewski <marcin.sloniewski@gmail.com>.
+  */
+ 
+ /dts-v1/;
+@@ -9,20 +9,28 @@
+ #include "stm32mp15xc.dtsi"
+ #include "stm32mp15-pinctrl.dtsi"
+ #include "stm32mp15xxac-pinctrl.dtsi"
+-
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/leds/common.h>
+ #include <dt-bindings/mfd/st,stpmic1.h>
++#include <dt-bindings/rtc/rtc-stm32.h>
+ 
+ / {
+-
+ 	model = "Seeed Studio Odyssey-STM32MP157C SOM";
+-	compatible = "seeed,odyssey-stm32mp157c-som", "st,stm32mp157";
++	compatible = "seeed,stm32mp157c-odyssey-som", "st,stm32mp157";
+ 
+ 	memory@c0000000 {
+ 		device_type = "memory";
+ 		reg = <0xc0000000 0x20000000>;
+ 	};
+ 
++	vin: vin {
++		compatible = "regulator-fixed";
++		regulator-name = "vin";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++	};
++
+ 	reserved-memory {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+@@ -68,10 +76,18 @@
+ 			reg = <0xd4000000 0x4000000>;
+ 			no-map;
+ 		};
++    };
++	
++	sram_dma: sram@10050000 {
++		compatible = "mmio-sram";
++		reg = <0x10050000 0x10000>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0 0x10050000 0x10000>;
+ 
+-		optee@de000000 {
+-			reg = <0xde000000 0x02000000>;
+-			no-map;
++		dma_pool: dma_pool@0 {
++			reg = <0x0 0x10000>;
++			pool;
+ 		};
+ 	};
+ 
+@@ -84,7 +100,25 @@
+ 			default-state = "off";
+ 		};
+ 	};
++};
++
++&cec {
++	pinctrl-names = "default", "sleep";
++	pinctrl-0 = <&cec_pins_b>;
++	pinctrl-1 = <&cec_sleep_pins_b>;
++	status = "okay";
++};
++
++&dma1 {
++	sram_dma = <&dma_pool>;
++};
++
++&dma2 {
++	sram_dma = <&dma_pool>;
++};
+ 
++&dts {
++	status = "okay";
+ };
+ 
+ &gpu {
+@@ -98,7 +132,6 @@
+ 	pinctrl-1 = <&i2c2_sleep_pins_a>;
+ 	i2c-scl-rising-time-ns = <185>;
+ 	i2c-scl-falling-time-ns = <20>;
+-	clock-frequency = <400000>;
+ 	status = "okay";
+ 	/* spare dmas for other usage */
+ 	/delete-property/dmas;
+@@ -107,14 +140,21 @@
+ 	pmic: stpmic@33 {
+ 		compatible = "st,stpmic1";
+ 		reg = <0x33>;
+-		interrupts-extended = <&gpioa 0 IRQ_TYPE_EDGE_FALLING>;
++		interrupts-extended = <&exti_pwr 55 IRQ_TYPE_EDGE_FALLING>;
+ 		interrupt-controller;
+-		#interrupt-cells = <2>;
++        #interrupt-cells = <2>;
++		interrupt-parent = <&gpioa>;
++		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
+ 		status = "okay";
+ 
++		st,main-control-register = <0x04>;
++		st,vin-control-register = <0xc0>;
++		st,usb-control-register = <0x20>;
++
+ 		regulators {
+ 			compatible = "st,stpmic1-regulators";
+ 			ldo1-supply = <&v3v3>;
++			ldo2-supply = <&vin>;
+ 			ldo3-supply = <&vdd_ddr>;
+ 			ldo6-supply = <&v3v3>;
+ 			pwr_sw1-supply = <&bst_out>;
+@@ -122,7 +162,7 @@
+ 
+ 			vddcore: buck1 {
+ 				regulator-name = "vddcore";
+-				regulator-min-microvolt = <1200000>;
++				regulator-min-microvolt = <800000>;
+ 				regulator-max-microvolt = <1350000>;
+ 				regulator-always-on;
+ 				regulator-initial-mode = <0>;
+@@ -154,23 +194,29 @@
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-always-on;
+ 				regulator-over-current-protection;
++				//gpio = <&gpiod 11 0>;
++				//enable-active-high;
+ 				regulator-initial-mode = <0>;
+ 			};
+ 
+-			v1v8_audio: ldo1 {
+-				regulator-name = "v1v8_audio";
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <1800000>;
++			v3v3_env: ldo1 {
++				regulator-name = "v3v3_env";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
+ 				regulator-always-on;
+ 				interrupts = <IT_CURLIM_LDO1 0>;
+ 			};
+ 
+-			v3v3_hdmi: ldo2 {
+-				regulator-name = "v3v3_hdmi";
+-				regulator-min-microvolt = <3300000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-always-on;
+-				interrupts = <IT_CURLIM_LDO2 0>;
++			v3v3_eth0: ldo2 {
++               //compatible = "regulator-gpio";
++               regulator-name = "v3v3_eth0";
++               regulator-min-microvolt = <3300000>;
++               regulator-max-microvolt = <3300000>;
++               regulator-always-on;
++               //regulator-boot-on;
++               //vin-supply = <&vin>;
++               //gpios = <&gpiod 11 GPIO_ACTIVE_HIGH>;
++               //states = <1800000 0x0 3300000 0x1>;
+ 			};
+ 
+ 			vtt_ddr: ldo3 {
+@@ -183,6 +229,8 @@
+ 
+ 			vdd_usb: ldo4 {
+ 				regulator-name = "vdd_usb";
++				//regulator-min-microvolt = <3300000>;
++				//regulator-max-microvolt = <3300000>;
+ 				interrupts = <IT_CURLIM_LDO4 0>;
+ 			};
+ 
+@@ -194,10 +242,10 @@
+ 				regulator-boot-on;
+ 			};
+ 
+-			v1v2_hdmi: ldo6 {
+-				regulator-name = "v1v2_hdmi";
+-				regulator-min-microvolt = <1200000>;
+-				regulator-max-microvolt = <1200000>;
++			v3v3_cam: ldo6 {
++				regulator-name = "v3v3_cam";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
+ 				regulator-always-on;
+ 				interrupts = <IT_CURLIM_LDO6 0>;
+ 			};
+@@ -205,6 +253,7 @@
+ 			vref_ddr: vref_ddr {
+ 				regulator-name = "vref_ddr";
+ 				regulator-always-on;
++				//regulator-over-current-protection;
+ 			};
+ 
+ 			 bst_out: boost {
+@@ -214,13 +263,13 @@
+ 
+ 			vbus_otg: pwr_sw1 {
+ 				regulator-name = "vbus_otg";
+-				interrupts = <IT_OCP_OTG 0>;
++				regulator-active-discharge;
+ 			 };
+ 
+ 			 vbus_sw: pwr_sw2 {
+ 				regulator-name = "vbus_sw";
+ 				interrupts = <IT_OCP_SWOUT 0>;
+-				regulator-active-discharge = <1>;
++				regulator-active-discharge;
+ 			 };
+ 		};
+ 
+@@ -229,7 +278,6 @@
+ 			interrupts = <IT_PONKEY_F 0>, <IT_PONKEY_R 0>;
+ 			interrupt-names = "onkey-falling", "onkey-rising";
+ 			power-off-time-sec = <10>;
+-			status = "okay";
+ 		};
+ 
+ 		watchdog {
+@@ -258,6 +306,17 @@
+ 	status = "okay";
+ };
+ 
++&rng1 {
++	status = "okay";
++};
++
++&rtc {
++	st,lsco = <2>;
++	pinctrl-0 = <&rtc_out2_rmp_pins_a>;
++	pinctrl-names = "default";
++    status = "okay";
++};
++
+ &sdmmc2 {
+ 	pinctrl-names = "default", "opendrain", "sleep";
+ 	pinctrl-0 = <&sdmmc2_b4_pins_a>;
+@@ -268,97 +327,8 @@
+ 	st,neg-edge;
+ 	bus-width = <4>;
+ 	vmmc-supply = <&v3v3>;
++	vqmmc-supply = <&vdd>;
++	mmc-ddr-3_3v;
+ 	status = "okay";
+ };
+ 
+-&timers1 {
+-	/* spare dmas for other usage */
+-	/delete-property/dmas;
+-	/delete-property/dma-names;
+-	status = "disabled";
+-	pwm {
+-		pinctrl-0 = <&pwm1_pins_a>;
+-		pinctrl-1 = <&pwm1_sleep_pins_a>;
+-		pinctrl-names = "default", "sleep";
+-		status = "okay";
+-	};
+-	timer@0 {
+-		status = "okay";
+-	};
+-};
+-
+-&timers3 {
+-	/delete-property/dmas;
+-	/delete-property/dma-names;
+-	status = "disabled";
+-	pwm {
+-		pinctrl-0 = <&pwm3_pins_a>;
+-		pinctrl-1 = <&pwm3_sleep_pins_a>;
+-		pinctrl-names = "default", "sleep";
+-		status = "okay";
+-	};
+-	timer@2 {
+-		status = "okay";
+-	};
+-};
+-
+-&timers4 {
+-	/delete-property/dmas;
+-	/delete-property/dma-names;
+-	status = "disabled";
+-	pwm {
+-		pinctrl-0 = <&pwm4_pins_a &pwm4_pins_b>;
+-		pinctrl-1 = <&pwm4_sleep_pins_a &pwm4_sleep_pins_b>;
+-		pinctrl-names = "default", "sleep";
+-		status = "okay";
+-	};
+-	timer@3 {
+-		status = "okay";
+-	};
+-};
+-
+-&timers5 {
+-	/delete-property/dmas;
+-	/delete-property/dma-names;
+-	status = "disabled";
+-	pwm {
+-		pinctrl-0 = <&pwm5_pins_a>;
+-		pinctrl-1 = <&pwm5_sleep_pins_a>;
+-		pinctrl-names = "default", "sleep";
+-		status = "okay";
+-	};
+-	timer@4 {
+-		status = "okay";
+-	};
+-};
+-
+-&timers6 {
+-	/delete-property/dmas;
+-	/delete-property/dma-names;
+-	status = "disabled";
+-	timer@5 {
+-		status = "okay";
+-	};
+-};
+-
+-&timers12 {
+-	/delete-property/dmas;
+-	/delete-property/dma-names;
+-	status = "disabled";
+-	pwm {
+-		pinctrl-0 = <&pwm12_pins_a>;
+-		pinctrl-1 = <&pwm12_sleep_pins_a>;
+-		pinctrl-names = "default", "sleep";
+-		status = "okay";
+-	};
+-	timer@11 {
+-		status = "okay";
+-	};
+-};
+-
+-&vrefbuf {
+-	regulator-min-microvolt = <2500000>;
+-	regulator-max-microvolt = <2500000>;
+-	vdda-supply = <&vdd>;
+-	status = "okay";
+-};
